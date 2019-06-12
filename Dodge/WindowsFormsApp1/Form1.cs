@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
         int minrnd = 20;
         int maxrnd = 30;
         int clicky;
-        int laserspeed = 20;
+        int laserspeed = 40;
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -392,7 +392,7 @@ namespace WindowsFormsApp1
 
         private void laser_Tick(object sender, EventArgs e)
         {
-            ly = ly - 30;
+            ly = ly - laserspeed;
             fireingmalaser.Y = ly;
         }
 
