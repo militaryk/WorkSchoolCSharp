@@ -97,7 +97,7 @@
             // LblLives
             // 
             this.LblLives.AutoSize = true;
-            this.LblLives.Location = new System.Drawing.Point(718, 416);
+            this.LblLives.Location = new System.Drawing.Point(712, 416);
             this.LblLives.Name = "LblLives";
             this.LblLives.Size = new System.Drawing.Size(13, 13);
             this.LblLives.TabIndex = 2;
@@ -116,9 +116,9 @@
             // 
             this.button2.BackColor = System.Drawing.Color.LightGreen;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(553, 117);
+            this.button2.Location = new System.Drawing.Point(529, 117);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(213, 146);
+            this.button2.Size = new System.Drawing.Size(270, 159);
             this.button2.TabIndex = 6;
             this.button2.Text = "Start";
             this.button2.UseVisualStyleBackColor = false;
@@ -372,9 +372,12 @@
             this.Controls.Add(this.LblScore);
             this.Controls.Add(this.PnlGame);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Deactivate += new System.EventHandler(this.Form1_Deactivate);

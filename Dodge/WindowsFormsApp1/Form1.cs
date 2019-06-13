@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             areaSpaceship = new Rectangle(x2, y2, 30, 30);//spaceship's rectangle	
-            fireingmalaser = new Rectangle(lx2, ly2, 30, 30); 
+            fireingmalaser = new Rectangle(lx2, ly2, 30, 30);
             for (int i = 0; i <= 6; i++)
             {
                 area[i] = new Rectangle(x + 70 * i, y, 40, 40);
@@ -193,6 +193,8 @@ namespace WindowsFormsApp1
             Random rnd = new Random();
             int difficulty = rnd.Next(minrnd, maxrnd);
             user = TxtName.Text;
+            minspeed = 0;
+            maxspeed = 0;
             clicky = 0;
             labeluser.Text = user;
             if ( user == "Person")
