@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace WindowsFormsApp1
 {
@@ -385,6 +386,14 @@ namespace WindowsFormsApp1
         private void LblScore_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void fordaLOLSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var soundPlayer = new SoundPlayer(@"\nvergonnagiveuup.wav"))
+            {
+                soundPlayer.Play(); // can also use soundPlayer.PlaySync()
+            }
         }
 
         private void nOMOREINFINITEToolStripMenuItem_Click(object sender, EventArgs e)
