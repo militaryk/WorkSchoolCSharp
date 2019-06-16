@@ -62,8 +62,11 @@
             this.decentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crazyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eXTREMEMEGAMADNESSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laser = new System.Windows.Forms.Timer(this.components);
             this.fordaLOLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.laser = new System.Windows.Forms.Timer(this.components);
+            this.TmrPlanetX = new System.Windows.Forms.Timer(this.components);
+            this.LblRight = new System.Windows.Forms.Label();
+            this.LblLeft = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,7 +120,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.LightGreen;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(549, 117);
+            this.button2.Location = new System.Drawing.Point(549, 130);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(239, 146);
             this.button2.TabIndex = 6;
@@ -228,7 +231,7 @@
             this.fordaLOLSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(414, 3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(348, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(228, 24);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
@@ -350,10 +353,6 @@
             this.eXTREMEMEGAMADNESSToolStripMenuItem.Text = "EXTREME MEGA MADNESS";
             this.eXTREMEMEGAMADNESSToolStripMenuItem.Click += new System.EventHandler(this.eXTREMEMEGAMADNESSToolStripMenuItem_Click);
             // 
-            // laser
-            // 
-            this.laser.Tick += new System.EventHandler(this.laser_Tick);
-            // 
             // fordaLOLSToolStripMenuItem
             // 
             this.fordaLOLSToolStripMenuItem.Name = "fordaLOLSToolStripMenuItem";
@@ -361,12 +360,42 @@
             this.fordaLOLSToolStripMenuItem.Text = "FordaLOLS";
             this.fordaLOLSToolStripMenuItem.Click += new System.EventHandler(this.fordaLOLSToolStripMenuItem_Click);
             // 
+            // laser
+            // 
+            this.laser.Tick += new System.EventHandler(this.laser_Tick);
+            // 
+            // TmrPlanetX
+            // 
+            this.TmrPlanetX.Enabled = true;
+            this.TmrPlanetX.Interval = 1000;
+            this.TmrPlanetX.Tick += new System.EventHandler(this.TmrPlanetX_Tick);
+            // 
+            // LblRight
+            // 
+            this.LblRight.AutoSize = true;
+            this.LblRight.Location = new System.Drawing.Point(558, 13);
+            this.LblRight.Name = "LblRight";
+            this.LblRight.Size = new System.Drawing.Size(13, 13);
+            this.LblRight.TabIndex = 16;
+            this.LblRight.Text = "0";
+            // 
+            // LblLeft
+            // 
+            this.LblLeft.AutoSize = true;
+            this.LblLeft.Location = new System.Drawing.Point(741, 13);
+            this.LblLeft.Name = "LblLeft";
+            this.LblLeft.Size = new System.Drawing.Size(13, 13);
+            this.LblLeft.TabIndex = 17;
+            this.LblLeft.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LblLeft);
+            this.Controls.Add(this.LblRight);
             this.Controls.Add(this.highscore);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -437,6 +466,9 @@
         private System.Windows.Forms.ToolStripMenuItem eXTREMEMEGAMADNESSToolStripMenuItem;
         private System.Windows.Forms.Timer laser;
         private System.Windows.Forms.ToolStripMenuItem fordaLOLSToolStripMenuItem;
+        private System.Windows.Forms.Timer TmrPlanetX;
+        private System.Windows.Forms.Label LblRight;
+        private System.Windows.Forms.Label LblLeft;
     }
 }
 

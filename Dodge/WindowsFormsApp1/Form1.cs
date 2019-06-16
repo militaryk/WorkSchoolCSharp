@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
         Image planet1 = Image.FromFile(Application.StartupPath + @"\planet1.png");
         Rectangle areaSpaceship;
         Rectangle fireingmalaser;
-        Image malaser = Image.FromFile(Application.StartupPath + @"\red.jpg");
+        Image malaser = Image.FromFile(Application.StartupPath + @"\red.png");
         Rectangle[] area = new Rectangle[7];//area[0] to area[6]
         bool left, right, firemylaser;
         bool fired = false;
@@ -183,10 +183,8 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int minrnd = 20;
-            int maxrnd = 30;
-            maxrnd = maxrnd + 10;
-            minrnd = minrnd = 10;
+            minrnd = 20;
+            maxrnd = 30;
             Random rnd = new Random();
             int difficulty = rnd.Next(minrnd, maxrnd);
             user = TxtName.Text;
@@ -266,12 +264,12 @@ namespace WindowsFormsApp1
 
         private void Difficulty_Tick(object sender, EventArgs e)
         {
-            maxrnd = maxrnd + 10;
-            minrnd = minrnd = 10;
+            maxrnd += 5;
+            minrnd -= 5;
             Random rnd = new Random();
             int difficulty = rnd.Next(minrnd, maxrnd);
-            maxspeed = maxspeed + difficulty;
-            minspeed = minspeed + difficulty;
+            maxspeed += difficulty;
+            minspeed += difficulty;
             for (int i = 0; i <= 6; i++)
             {
                 planetSpeed[i] = speed.Next(minspeed, maxspeed); //each planet has a random speed
@@ -390,6 +388,46 @@ namespace WindowsFormsApp1
             {
                 soundPlayer.Play(); // can also use soundPlayer.PlaySync()
             }
+        }
+
+        private void TmrPlanetX_Tick(object sender, EventArgs e)
+        {
+            Random rad = new Random();
+            int PlanetLeft = rad.Next(0, 1);
+            int movmentsL= 0;
+            int movmentsR = 0;
+            LblLeft.Text = movmentsL.ToString();
+            LblRight.Text = movmentsR.ToString();
+            for (int i = 0; i <= 6; i++)
+            {
+                if (movmentsR == 3)
+                {
+                    area[i].X = area[i].X - 15;
+                }
+                if (movmentsL == 3)
+                {
+                    area[i].X = area[i].X + 15;
+                }
+            }
+            if (PlanetLeft == 0)
+            {
+                movmentsL = movmentsL + 1;
+                movmentsR = movmentsR - 1;
+                for (int i = 0; i <= 6; i++)
+                {
+                    area[i].X = area[i].X + 5;
+                }
+            }
+            if (PlanetLeft == 1)
+            {
+                movmentsR = movmentsR + 1;
+                movmentsL = movmentsL - 1;
+                for (int i = 0; i <= 6; i++)
+                {
+                    area[i].X = area[i].X + 5;
+                }
+            }
+
         }
 
         private void nOMOREINFINITEToolStripMenuItem_Click(object sender, EventArgs e)
