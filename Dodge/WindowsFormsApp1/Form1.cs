@@ -59,7 +59,6 @@ namespace WindowsFormsApp1
             if (e.KeyData == Keys.Left) { left = false; }
             if (e.KeyData == Keys.Right) { right = false; }
         }
-
         private void TmrShip_Tick(object sender, EventArgs e)
         {
             if (left)
@@ -101,7 +100,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }// move ship 5 to the right
-            if (fireingmalaser.Y < 0)
+            if (fireingmalaser.Y < -400)
             {
                 firemylaser = false;
                 ly = y2;
@@ -184,11 +183,8 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int maxspeed = 0;
             int minrnd = 20;
             int maxrnd = 30;
-            int tillfire = 0;
-            int minspeed = 0;
             maxrnd = maxrnd + 10;
             minrnd = minrnd = 10;
             Random rnd = new Random();
