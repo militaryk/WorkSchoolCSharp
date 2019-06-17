@@ -35,6 +35,7 @@
             // 
             // PnlGame
             // 
+            this.PnlGame.BackColor = System.Drawing.SystemColors.ControlDark;
             this.PnlGame.Location = new System.Drawing.Point(12, 43);
             this.PnlGame.Name = "PnlGame";
             this.PnlGame.Size = new System.Drawing.Size(776, 369);
