@@ -16,21 +16,89 @@ namespace Platformer
         Rectangle[] area = new Rectangle[3];//area[0] to area[3]
         Rectangle[] area2 = new Rectangle[3];//area[0] to area[3]
         Rectangle[] area3 = new Rectangle[3];//area[0] to area[3]
+        Rectangle theperson;
         Random speed = new Random();
         Random speed2 = new Random();
         Random speed3 = new Random();
         Image platform = Image.FromFile(Application.StartupPath + @"\platform.jpg");
         Image platform2 = Image.FromFile(Application.StartupPath + @"\platform.jpg");
         Image platform3 = Image.FromFile(Application.StartupPath + @"\platform.jpg");
+        Image person = Image.FromFile(Application.StartupPath + @"\person.jpg");
         int x1 = 200, y = 100;
-        int x2 = 200, y2 = 300;
-        int x3 = 200, y3 = 200;
-        int gap = 300;
-        int gap2 = 300;
-        int gap3 = 300;
+        int x2 = 200, y2 = 200;
+        int x3 = 200, y3 = 300;
+        int xp = 200, yp = 160;
+        int score = 0;
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
+        bool jump, left, right;
+
+        private void TmrPerson_Tick(object sender, EventArgs e)
+        {
+            if (left)
+            {
+                if (left) // if left arrow pressed
+                {
+                    if (theperson.X < 10) //check to see if spaceship within 10 of left side
+                    {
+                        theperson.X = 10;
+                    }
+                    else
+                    {
+                        theperson.X -= 10; //else move 5 to the left
+                    }
+                }
+            }
+            if (right)
+            {
+                if (right) // if left arrow pressed
+                {
+                    if (theperson.X > PnlGame.Width - 40)// is spaceship within 40 of right side
+                    {
+                        theperson.X = PnlGame.Width - 40;
+                    }
+                    else
+                    {
+                        theperson.X += 10; //else move 5 to the left
+                    }
+                }
+            }
+            if (jump == true)
+            {
+                TmrJump.Enabled = true;
+                theperson.Y -= 10;
+            }
+            if (jump == false)
+            {
+                theperson.Y += 20;
+            }
+        }
+
+        private void TmrJump_Tick(object sender, EventArgs e)
+        {
+            jump = false;
+            TmrJump.Enabled = false;
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            jump = true;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Left) { left = true; }
+            if (e.KeyData == Keys.Right) { right = true; }
+         
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Left) { left = false; }
+            if (e.KeyData == Keys.Right) { right = false; }
+        }
+
         int check = 0;
 
         private void TmrPlatform_Tick(object sender, EventArgs e)
@@ -50,6 +118,36 @@ namespace Platformer
                 area3[p].X -= platform3Speed[p];
             }
             PnlGame.Invalidate();
+            for (int i = 0; i <= 2; i++)
+            {
+                if (area[i].X < -200)
+                {
+                    score += 1; //add 1 to score
+                    LblScore.Text = score.ToString(); //display score on form
+
+                    area[i].X = 800;
+                }
+            }
+            for (int o = 0; o <= 2; o++)
+            {
+                if (area2[o].X < -200)
+                {
+                    score += 1; //add 1 to score
+                    LblScore.Text = score.ToString(); //display score on form
+
+                    area2[o].X = 800;
+                }
+            }
+            for (int p = 0; p <= 2; p++)
+            {
+                if (area3[p].X < -200)
+                {
+                    score += 1; //add 1 to score
+                    LblScore.Text = score.ToString(); //display score on form
+
+                    area3[p].X = 800;
+                }
+            }
         }
 
         public Form1()
@@ -60,6 +158,7 @@ namespace Platformer
             int gap2 = rndgap2.Next(300, 300);
             Random rndgap3 = new Random();
             int gap3 = rndgap3.Next(300, 300);
+            theperson = new Rectangle(xp , yp, 40, 40);
             for (int i = 0; i <= 2; i++)
             {
                 platformSpeed[i] = speed.Next(10, 20); //each platform has a random speed
@@ -82,6 +181,7 @@ namespace Platformer
         {
             //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
+            g.DrawImage(person, theperson);
             //use the DrawImage method to draw the platform on the panel
             for (int i = 0; i <= 2; i++)
             {

@@ -32,11 +32,18 @@
             System.Windows.Forms.Timer TmrPlatform;
             this.PnlGame = new System.Windows.Forms.Panel();
             this.LblCheck = new System.Windows.Forms.Label();
-            this.LblSpeed1 = new System.Windows.Forms.Label();
+            this.LblScore = new System.Windows.Forms.Label();
             this.LblSpeed2 = new System.Windows.Forms.Label();
             this.LblSpeed3 = new System.Windows.Forms.Label();
+            this.TmrPerson = new System.Windows.Forms.Timer(this.components);
+            this.TmrJump = new System.Windows.Forms.Timer(this.components);
             TmrPlatform = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // TmrPlatform
+            // 
+            TmrPlatform.Enabled = true;
+            TmrPlatform.Tick += new System.EventHandler(this.TmrPlatform_Tick);
             // 
             // PnlGame
             // 
@@ -47,11 +54,6 @@
             this.PnlGame.TabIndex = 0;
             this.PnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlGame_Paint);
             // 
-            // TmrPlatform
-            // 
-            TmrPlatform.Enabled = true;
-            TmrPlatform.Tick += new System.EventHandler(this.TmrPlatform_Tick);
-            // 
             // LblCheck
             // 
             this.LblCheck.AutoSize = true;
@@ -61,14 +63,14 @@
             this.LblCheck.TabIndex = 1;
             this.LblCheck.Text = "0";
             // 
-            // LblSpeed1
+            // LblScore
             // 
-            this.LblSpeed1.AutoSize = true;
-            this.LblSpeed1.Location = new System.Drawing.Point(441, 18);
-            this.LblSpeed1.Name = "LblSpeed1";
-            this.LblSpeed1.Size = new System.Drawing.Size(58, 13);
-            this.LblSpeed1.TabIndex = 2;
-            this.LblSpeed1.Text = "LblSpeed1";
+            this.LblScore.AutoSize = true;
+            this.LblScore.Location = new System.Drawing.Point(12, 9);
+            this.LblScore.Name = "LblScore";
+            this.LblScore.Size = new System.Drawing.Size(13, 13);
+            this.LblScore.TabIndex = 2;
+            this.LblScore.Text = "0";
             // 
             // LblSpeed2
             // 
@@ -90,19 +92,32 @@
             this.LblSpeed3.Tag = "";
             this.LblSpeed3.Text = "LblSpeed3";
             // 
+            // TmrPerson
+            // 
+            this.TmrPerson.Enabled = true;
+            this.TmrPerson.Tick += new System.EventHandler(this.TmrPerson_Tick);
+            // 
+            // TmrJump
+            // 
+            this.TmrJump.Interval = 1000;
+            this.TmrJump.Tick += new System.EventHandler(this.TmrJump_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LblScore);
             this.Controls.Add(this.LblSpeed3);
             this.Controls.Add(this.LblSpeed2);
-            this.Controls.Add(this.LblSpeed1);
             this.Controls.Add(this.LblCheck);
             this.Controls.Add(this.PnlGame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,9 +127,11 @@
 
         private System.Windows.Forms.Panel PnlGame;
         private System.Windows.Forms.Label LblCheck;
-        private System.Windows.Forms.Label LblSpeed1;
+        private System.Windows.Forms.Label LblScore;
         private System.Windows.Forms.Label LblSpeed2;
         private System.Windows.Forms.Label LblSpeed3;
+        private System.Windows.Forms.Timer TmrPerson;
+        private System.Windows.Forms.Timer TmrJump;
     }
 }
 
