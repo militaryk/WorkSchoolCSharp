@@ -27,12 +27,14 @@ namespace Platformer
         int x1 = 200, y = 100;
         int x2 = 200, y2 = 200;
         int x3 = 200, y3 = 300;
-        int xp = 200, yp = 160;
+        int xp = 200, yp = 200;
         int score = 0;
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
-        bool jump, left, right;
+        bool jump, left, right, jumplocked = true;
+        bool movingdown;
+    
 
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
@@ -66,8 +68,12 @@ namespace Platformer
             }
             if (jump == true)
             {
-                TmrJump.Enabled = true;
-                theperson.Y -= 10;
+                   if (jumplocked == false)
+                   {
+                   movingdown = true;
+                   theperson.Y -= 10;
+                   TmrJump.Enabled = true;
+                   }
             }
             if (jump == false)
             {
@@ -79,6 +85,7 @@ namespace Platformer
         {
             jump = false;
             TmrJump.Enabled = false;
+            movingdown = false;
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -105,6 +112,108 @@ namespace Platformer
         {
             check = check + 1;
             LblCheck.Text = check.ToString();
+            if (movingdown == true)
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    if (theperson.IntersectsWith(area[i]))
+                    {
+                        theperson.Y = theperson.Y + 20;
+                        jumplocked = false;
+                    }
+                }
+                for (int o = 0; o <= 2; o++)
+                {
+                    if (theperson.IntersectsWith(area2[o]))
+                    {
+                        theperson.Y = theperson.Y + 20;
+                        jumplocked = false;
+                    }
+                }
+                for (int p = 0; p <= 2; p++)
+                {
+                    if (theperson.IntersectsWith(area3[p]))
+                    {
+                        theperson.Y = theperson.Y + 20;
+                        jumplocked = false;
+                    }
+                }
+            }
+            if (movingdown == false)
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    if (theperson.IntersectsWith(area[i]))
+                    {
+                        theperson.Y = theperson.Y - 20;
+                        jump = false;
+                    }
+                }
+                for (int o = 0; o <= 2; o++)
+                {
+                    if (theperson.IntersectsWith(area2[o]))
+                    {
+                        theperson.Y = theperson.Y - 20;
+                        jump = false;
+                    }
+                }
+                for (int p = 0; p <= 2; p++)
+                {
+                    if (theperson.IntersectsWith(area3[p]))
+                    {
+                        theperson.Y = theperson.Y - 20;
+                        jump = false;
+                    }
+                }
+            }
+            if (right == true)
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    if (theperson.IntersectsWith(area[i]))
+                    {
+                        theperson.X = theperson.X - 40;
+                    }
+                }
+                for (int o = 0; o <= 2; o++)
+                {
+                    if (theperson.IntersectsWith(area2[o]))
+                    {
+                        theperson.X = theperson.X - 40;
+                    }
+                }
+                for (int p = 0; p <= 2; p++)
+                {
+                    if (theperson.IntersectsWith(area3[p]))
+                    {
+                        theperson.X = theperson.X - 40;
+                    }
+                }
+            }
+            if (left == true)
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    if (theperson.IntersectsWith(area[i]))
+                    {
+                        theperson.X = theperson.X + 40;
+                    }
+                }
+                for (int o = 0; o <= 2; o++)
+                {
+                    if (theperson.IntersectsWith(area2[o]))
+                    {
+                        theperson.X = theperson.X + 40;
+                    }
+                }
+                for (int p = 0; p <= 2; p++)
+                {
+                    if (theperson.IntersectsWith(area3[p]))
+                    {
+                        theperson.X = theperson.X + 40;
+                    }
+                }
+            }
             for (int i = 0; i <= 2; i++)
             {
                 area[i].X -= platformSpeed[i];
@@ -158,21 +267,21 @@ namespace Platformer
             int gap2 = rndgap2.Next(300, 300);
             Random rndgap3 = new Random();
             int gap3 = rndgap3.Next(300, 300);
-            theperson = new Rectangle(xp , yp, 40, 40);
+            theperson = new Rectangle(xp , yp, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
                 platformSpeed[i] = speed.Next(10, 20); //each platform has a random speed
-                area[i] = new Rectangle(x1 + gap * i, y, 150, 40);
+                area[i] = new Rectangle(x1 + gap * i, y, 150, 20);
             }
             for (int o = 0; o <= 2; o++)
             {
                 platform2Speed[o] = speed2.Next(10, 20); //each platform has a random speed
-                area2[o] = new Rectangle(x2 + gap2 * o, y2, 150, 40);
+                area2[o] = new Rectangle(x2 + gap2 * o, y2, 150, 20);
             }
             for (int p = 0; p <= 2; p++)
             {
                 platform3Speed[p] = speed3.Next(10, 20);
-                area3[p] = new Rectangle(x3 + gap3 * p, y3, 150, 40);
+                area3[p] = new Rectangle(x3 + gap3 * p, y3, 150, 20);
             }
             InitializeComponent();
         }

@@ -33,8 +33,6 @@
             this.PnlGame = new System.Windows.Forms.Panel();
             this.LblCheck = new System.Windows.Forms.Label();
             this.LblScore = new System.Windows.Forms.Label();
-            this.LblSpeed2 = new System.Windows.Forms.Label();
-            this.LblSpeed3 = new System.Windows.Forms.Label();
             this.TmrPerson = new System.Windows.Forms.Timer(this.components);
             this.TmrJump = new System.Windows.Forms.Timer(this.components);
             TmrPlatform = new System.Windows.Forms.Timer(this.components);
@@ -72,26 +70,6 @@
             this.LblScore.TabIndex = 2;
             this.LblScore.Text = "0";
             // 
-            // LblSpeed2
-            // 
-            this.LblSpeed2.AutoSize = true;
-            this.LblSpeed2.Location = new System.Drawing.Point(505, 18);
-            this.LblSpeed2.Name = "LblSpeed2";
-            this.LblSpeed2.Size = new System.Drawing.Size(58, 13);
-            this.LblSpeed2.TabIndex = 3;
-            this.LblSpeed2.Tag = "";
-            this.LblSpeed2.Text = "LblSpeed2";
-            // 
-            // LblSpeed3
-            // 
-            this.LblSpeed3.AutoSize = true;
-            this.LblSpeed3.Location = new System.Drawing.Point(569, 18);
-            this.LblSpeed3.Name = "LblSpeed3";
-            this.LblSpeed3.Size = new System.Drawing.Size(58, 13);
-            this.LblSpeed3.TabIndex = 4;
-            this.LblSpeed3.Tag = "";
-            this.LblSpeed3.Text = "LblSpeed3";
-            // 
             // TmrPerson
             // 
             this.TmrPerson.Enabled = true;
@@ -108,10 +86,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.LblScore);
-            this.Controls.Add(this.LblSpeed3);
-            this.Controls.Add(this.LblSpeed2);
             this.Controls.Add(this.LblCheck);
             this.Controls.Add(this.PnlGame);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -128,8 +105,6 @@
         private System.Windows.Forms.Panel PnlGame;
         private System.Windows.Forms.Label LblCheck;
         private System.Windows.Forms.Label LblScore;
-        private System.Windows.Forms.Label LblSpeed2;
-        private System.Windows.Forms.Label LblSpeed3;
         private System.Windows.Forms.Timer TmrPerson;
         private System.Windows.Forms.Timer TmrJump;
     }
