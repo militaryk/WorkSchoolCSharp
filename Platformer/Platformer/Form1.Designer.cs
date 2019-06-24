@@ -29,19 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Timer TmrPlatform;
+            this.TmrPlatform = new System.Windows.Forms.Timer(this.components);
             this.PnlGame = new System.Windows.Forms.Panel();
             this.LblCheck = new System.Windows.Forms.Label();
             this.LblScore = new System.Windows.Forms.Label();
             this.TmrPerson = new System.Windows.Forms.Timer(this.components);
             this.TmrJump = new System.Windows.Forms.Timer(this.components);
-            TmrPlatform = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // TmrPlatform
             // 
-            TmrPlatform.Enabled = true;
-            TmrPlatform.Tick += new System.EventHandler(this.TmrPlatform_Tick);
+            this.TmrPlatform.Enabled = true;
+            this.TmrPlatform.Tick += new System.EventHandler(this.TmrPlatform_Tick);
             // 
             // PnlGame
             // 
@@ -55,7 +54,7 @@
             // LblCheck
             // 
             this.LblCheck.AutoSize = true;
-            this.LblCheck.Location = new System.Drawing.Point(736, 18);
+            this.LblCheck.Location = new System.Drawing.Point(754, 9);
             this.LblCheck.Name = "LblCheck";
             this.LblCheck.Size = new System.Drawing.Size(13, 13);
             this.LblCheck.TabIndex = 1;
@@ -107,6 +106,7 @@
         private System.Windows.Forms.Label LblScore;
         private System.Windows.Forms.Timer TmrPerson;
         private System.Windows.Forms.Timer TmrJump;
+        private System.Windows.Forms.Timer TmrPlatform;
     }
 }
 

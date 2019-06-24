@@ -34,7 +34,10 @@ namespace Platformer
         int[] platform3Speed = new int[3];
         bool jump = false, left, right;
         bool movingdown, jumplocked = false;
-    
+        int highscore;
+        string user;
+        int check = 0;
+
 
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
@@ -42,7 +45,7 @@ namespace Platformer
             {
                 if (left) // if left arrow pressed
                 {
-                    if (theperson.X < 10) //check to see if spaceship within 10 of left side
+                    if (theperson.X < 10) //check to see if person within 10 of left side
                     {
                         theperson.X = 10;
                     }
@@ -56,8 +59,9 @@ namespace Platformer
             {
                 if (right) // if left arrow pressed
                 {
-                    if (theperson.X > PnlGame.Width - 40)// is spaceship within 40 of right side
+                    if (theperson.X > PnlGame.Width - 40)// is person within 40 of right side
                     {
+                        theperson.X = PnlGame.Width - 40;
                         theperson.X = PnlGame.Width - 40;
                     }
                     else
@@ -79,6 +83,26 @@ namespace Platformer
             {
                 theperson.Y += 20;
             }
+            if (theperson.Y > 550)
+            {
+                Gameover();
+            }
+        }
+
+        void Gameover()
+        {
+            TmrPerson.Enabled = false;
+            TmrPlatform.Enabled = false;
+            if (score >= highscore)
+            {
+                highscore = score;
+            }
+            MessageBox.Show("Game Over " + user + " you scored a whooping score of " + score);
+        }
+        
+        void Gamestart()
+        {
+
         }
 
         private void TmrJump_Tick(object sender, EventArgs e)
@@ -106,8 +130,6 @@ namespace Platformer
             if (e.KeyData == Keys.Left) { left = false; }
             if (e.KeyData == Keys.Right) { right = false; }
         }
-
-        int check = 0;
 
         private void TmrPlatform_Tick(object sender, EventArgs e)
         {
