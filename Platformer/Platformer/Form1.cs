@@ -32,8 +32,8 @@ namespace Platformer
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
-        bool jump, left, right, jumplocked = true;
-        bool movingdown;
+        bool jump = false, left, right;
+        bool movingdown, jumplocked = false;
     
 
         private void TmrPerson_Tick(object sender, EventArgs e)
@@ -85,6 +85,7 @@ namespace Platformer
         {
             jump = false;
             TmrJump.Enabled = false;
+            jumplocked = false;
             movingdown = false;
         }
 
