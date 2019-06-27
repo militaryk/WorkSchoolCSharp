@@ -32,11 +32,10 @@ namespace Platformer
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
-        bool jump = false, left, right;
-        bool movingdown, jumplocked = false;
+        bool jump, left, right;
+        bool movingdown;
         int highscore;
         string user;
-        int check = 0;
 
 
         private void TmrPerson_Tick(object sender, EventArgs e)
@@ -72,12 +71,9 @@ namespace Platformer
             }
             if (jump == true)
             {
-                   if (jumplocked == false)
-                   {
-                   movingdown = true;
-                   theperson.Y -= 10;
-                   TmrJump.Enabled = true;
-                   }
+                movingdown = false;
+                theperson.Y -= 10;
+                TmrJump.Enabled = true;
             }
             if (jump == false)
             {
@@ -100,22 +96,33 @@ namespace Platformer
             MessageBox.Show("Game Over " + user + " you scored a whooping score of " + score);
         }
         
-        void Gamestart()
-        {
 
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            Gamestart();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            jump = true;
         }
 
         private void TmrJump_Tick(object sender, EventArgs e)
         {
             jump = false;
             TmrJump.Enabled = false;
-            jumplocked = false;
-            movingdown = false;
+            movingdown = true;
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            jump = true;
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right");
+            MessageBox.Show("Please Enter Username Before You Begin");
+        }
+
+        private void BtnConfirm_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right");
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -133,32 +140,27 @@ namespace Platformer
 
         private void TmrPlatform_Tick(object sender, EventArgs e)
         {
-            check = check + 1;
-            LblCheck.Text = check.ToString();
             if (movingdown == true)
             {
                 for (int i = 0; i <= 2; i++)
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.Y = theperson.Y + 20;
-                        jumplocked = false;
+                        theperson.Y = theperson.Y + 30;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.Y = theperson.Y + 20;
-                        jumplocked = false;
+                        theperson.Y = theperson.Y + 30;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.Y = theperson.Y + 20;
-                        jumplocked = false;
+                        theperson.Y = theperson.Y + 30;
                     }
                 }
             }
@@ -187,7 +189,7 @@ namespace Platformer
                         theperson.Y = theperson.Y - 20;
                         jump = false;
                     }
-                }
+                } 
             }
             if (right == true)
             {
@@ -281,7 +283,6 @@ namespace Platformer
                 }
             }
         }
-
         public Form1()
         {
             Random rndgap = new Random();
@@ -339,6 +340,14 @@ namespace Platformer
             {
                 platform3Speed[p] = speed2.Next(10, 20); //each platform has a random speed
             }
+        }
+        void Gamestart()
+        {
+            BtnStart.Enabled = false;
+            BtnStop.Enabled = false;
+            BtnConfirm.Enabled = false;
+            TmrPerson.Enabled = true;
+            TmrPlatform.Enabled = true;
         }
     }
 }
