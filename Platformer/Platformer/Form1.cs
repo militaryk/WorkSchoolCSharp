@@ -346,6 +346,7 @@ namespace Platformer
             BtnStart.Enabled = false;
             BtnStop.Enabled = false;
             BtnConfirm.Enabled = false;
+            TbUser.Enabled = false;
             TmrPerson.Enabled = true;
             TmrPlatform.Enabled = true;
         }
