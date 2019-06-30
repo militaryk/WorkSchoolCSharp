@@ -33,12 +33,14 @@
             this.PnlGame = new System.Windows.Forms.Panel();
             this.LblScore = new System.Windows.Forms.Label();
             this.TmrPerson = new System.Windows.Forms.Timer(this.components);
-            this.TmrJump = new System.Windows.Forms.Timer(this.components);
             this.BtnStart = new System.Windows.Forms.Button();
             this.BtnStop = new System.Windows.Forms.Button();
             this.BtnConfirm = new System.Windows.Forms.Button();
             this.TbUser = new System.Windows.Forms.TextBox();
             this.LblUser = new System.Windows.Forms.Label();
+            this.BtnControl = new System.Windows.Forms.Button();
+            this.TmrGravity = new System.Windows.Forms.Timer(this.components);
+            this.TmrJump = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // TmrPlatform
@@ -50,7 +52,7 @@
             this.PnlGame.BackColor = System.Drawing.SystemColors.ControlDark;
             this.PnlGame.Location = new System.Drawing.Point(12, 43);
             this.PnlGame.Name = "PnlGame";
-            this.PnlGame.Size = new System.Drawing.Size(776, 354);
+            this.PnlGame.Size = new System.Drawing.Size(780, 354);
             this.PnlGame.TabIndex = 0;
             this.PnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlGame_Paint);
             // 
@@ -66,11 +68,6 @@
             // TmrPerson
             // 
             this.TmrPerson.Tick += new System.EventHandler(this.TmrPerson_Tick);
-            // 
-            // TmrJump
-            // 
-            this.TmrJump.Interval = 1000;
-            this.TmrJump.Tick += new System.EventHandler(this.TmrJump_Tick);
             // 
             // BtnStart
             // 
@@ -123,11 +120,31 @@
             this.LblUser.TabIndex = 7;
             this.LblUser.Text = "Username";
             // 
+            // BtnControl
+            // 
+            this.BtnControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BtnControl.Location = new System.Drawing.Point(389, 403);
+            this.BtnControl.Name = "BtnControl";
+            this.BtnControl.Size = new System.Drawing.Size(75, 35);
+            this.BtnControl.TabIndex = 8;
+            this.BtnControl.Text = "Controls";
+            this.BtnControl.UseVisualStyleBackColor = false;
+            // 
+            // TmrGravity
+            // 
+            this.TmrGravity.Tick += new System.EventHandler(this.TmrGravity_Tick);
+            // 
+            // TmrJump
+            // 
+            this.TmrJump.Interval = 120;
+            this.TmrJump.Tick += new System.EventHandler(this.TmrJump_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(804, 452);
+            this.Controls.Add(this.BtnControl);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.TbUser);
             this.Controls.Add(this.BtnConfirm);
@@ -141,7 +158,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -153,13 +169,15 @@
         private System.Windows.Forms.Panel PnlGame;
         private System.Windows.Forms.Label LblScore;
         private System.Windows.Forms.Timer TmrPerson;
-        private System.Windows.Forms.Timer TmrJump;
         private System.Windows.Forms.Timer TmrPlatform;
         private System.Windows.Forms.Button BtnStart;
         private System.Windows.Forms.Button BtnStop;
         private System.Windows.Forms.Button BtnConfirm;
         private System.Windows.Forms.TextBox TbUser;
         private System.Windows.Forms.Label LblUser;
+        private System.Windows.Forms.Button BtnControl;
+        private System.Windows.Forms.Timer TmrGravity;
+        private System.Windows.Forms.Timer TmrJump;
     }
 }
 

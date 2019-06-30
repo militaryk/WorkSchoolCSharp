@@ -61,8 +61,6 @@ namespace WindowsFormsApp1
         }
         private void TmrShip_Tick(object sender, EventArgs e)
         {
-            if (left)
-            {
                 if (left) // if left arrow pressed
                 {
                     if (areaSpaceship.X < 10) //check to see if spaceship within 10 of left side
@@ -79,24 +77,19 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-            }//move ship 5 to the left
-            if (right)
-            {
                 if (right) // if right arrow key pressed
                 {
                     if (areaSpaceship.X > PnlGame.Width - 40)// is spaceship within 40 of right side
-                    {
-                        areaSpaceship.X = PnlGame.Width - 40;
-                        fireingmalaser.X = PnlGame.Width - 40;
-                    }
+                        {
+                            areaSpaceship.X = PnlGame.Width - 40;
+                            fireingmalaser.X = PnlGame.Width - 40;
+                        }
                     else
                     {
                         areaSpaceship.X += 5;
-                        if (fired == false)
-                        {
-                            fireingmalaser.X += 5;
-                        }
-                        
+                    if (fired == false)
+                    {
+                        fireingmalaser.X += 5;
                     }
                 }
             }// move ship 5 to the right

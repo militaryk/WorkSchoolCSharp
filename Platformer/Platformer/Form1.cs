@@ -32,11 +32,10 @@ namespace Platformer
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
-        bool jump, left, right;
-        bool movingdown;
+        bool left, right, gravity;
         int highscore;
+        bool movingdown;
         string user;
-
 
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
@@ -69,16 +68,6 @@ namespace Platformer
                     }
                 }
             }
-            if (jump == true)
-            {
-                movingdown = false;
-                theperson.Y -= 10;
-                TmrJump.Enabled = true;
-            }
-            if (jump == false)
-            {
-                theperson.Y += 20;
-            }
             if (theperson.Y > 550)
             {
                 Gameover();
@@ -102,17 +91,6 @@ namespace Platformer
             Gamestart();
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            jump = true;
-        }
-
-        private void TmrJump_Tick(object sender, EventArgs e)
-        {
-            jump = false;
-            TmrJump.Enabled = false;
-            movingdown = true;
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -132,6 +110,24 @@ namespace Platformer
          
         }
 
+        private void TmrJump_Tick(object sender, EventArgs e)
+        {
+            movingdown = false;
+            TmrJump.Enabled = false;
+        }
+
+        private void TmrGravity_Tick(object sender, EventArgs e)
+        {
+            if (gravity == true)
+            {
+                theperson.Y += 10;
+            }
+            if (gravity == false)
+            {
+                theperson.Y += 10;
+            }
+        }
+
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Left) { left = false; }
@@ -146,21 +142,21 @@ namespace Platformer
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.Y = theperson.Y + 30;
+                        theperson.Y = theperson.Y + 10;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.Y = theperson.Y + 30;
+                        theperson.Y = theperson.Y + 10;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.Y = theperson.Y + 30;
+                        theperson.Y = theperson.Y + 10;
                     }
                 }
             }
@@ -170,24 +166,21 @@ namespace Platformer
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.Y = theperson.Y - 20;
-                        jump = false;
+                        theperson.Y = theperson.Y - 10;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.Y = theperson.Y - 20;
-                        jump = false;
+                        theperson.Y = theperson.Y - 10;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.Y = theperson.Y - 20;
-                        jump = false;
+                        theperson.Y = theperson.Y - 10;
                     }
                 } 
             }
@@ -291,7 +284,7 @@ namespace Platformer
             int gap2 = rndgap2.Next(300, 300);
             Random rndgap3 = new Random();
             int gap3 = rndgap3.Next(300, 300);
-            theperson = new Rectangle(xp , yp, 20, 20);
+            theperson = new Rectangle(xp-40 , yp-40, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
                 platformSpeed[i] = speed.Next(10, 20); //each platform has a random speed
@@ -347,8 +340,10 @@ namespace Platformer
             BtnStop.Enabled = false;
             BtnConfirm.Enabled = false;
             TbUser.Enabled = false;
+            BtnControl.Enabled = false;
             TmrPerson.Enabled = true;
             TmrPlatform.Enabled = true;
+            TmrGravity.Enabled = true;
         }
     }
 }
