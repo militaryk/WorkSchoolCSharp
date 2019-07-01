@@ -123,7 +123,7 @@
             // BtnControl
             // 
             this.BtnControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnControl.Location = new System.Drawing.Point(389, 403);
+            this.BtnControl.Location = new System.Drawing.Point(392, 403);
             this.BtnControl.Name = "BtnControl";
             this.BtnControl.Size = new System.Drawing.Size(75, 35);
             this.BtnControl.TabIndex = 8;
@@ -136,14 +136,14 @@
             // 
             // TmrJump
             // 
-            this.TmrJump.Interval = 120;
+            this.TmrJump.Interval = 1200;
             this.TmrJump.Tick += new System.EventHandler(this.TmrJump_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 452);
+            this.ClientSize = new System.Drawing.Size(804, 453);
             this.Controls.Add(this.BtnControl);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.TbUser);

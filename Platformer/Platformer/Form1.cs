@@ -32,7 +32,7 @@ namespace Platformer
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
-        bool left, right, gravity;
+        bool left, right, gravity = true, jump, jumpdelay = false;
         int highscore;
         bool movingdown;
         string user;
@@ -68,9 +68,27 @@ namespace Platformer
                     }
                 }
             }
+            if (theperson.Y < -10)// is person within 40 of right side
+            {
+                theperson.Y -= -10;
+            }
             if (theperson.Y > 550)
             {
                 Gameover();
+            }
+            if (jump == true)
+            {
+                gravity = false;
+                TmrJump.Enabled = true;
+                jumpdelay = true;
+            }
+            if (jumpdelay == true)
+            {
+                
+            }
+            else
+            {
+                gravity = true;
             }
         }
 
@@ -107,13 +125,15 @@ namespace Platformer
         {
             if (e.KeyData == Keys.Left) { left = true; }
             if (e.KeyData == Keys.Right) { right = true; }
-         
+            if (e.KeyData == Keys.Space) { if (jumpdelay == false) { jump = true; } }
+
         }
 
         private void TmrJump_Tick(object sender, EventArgs e)
         {
-            movingdown = false;
             TmrJump.Enabled = false;
+            jump = false;
+            gravity = true;
         }
 
         private void TmrGravity_Tick(object sender, EventArgs e)
@@ -121,10 +141,12 @@ namespace Platformer
             if (gravity == true)
             {
                 theperson.Y += 10;
+                movingdown = true;
             }
             if (gravity == false)
             {
-                theperson.Y += 10;
+                theperson.Y -= 10;
+                movingdown = false;
             }
         }
 
@@ -132,11 +154,12 @@ namespace Platformer
         {
             if (e.KeyData == Keys.Left) { left = false; }
             if (e.KeyData == Keys.Right) { right = false; }
+            if (e.KeyData == Keys.Space) { jump = false; }
         }
 
         private void TmrPlatform_Tick(object sender, EventArgs e)
         {
-            if (movingdown == true)
+            if (movingdown == false)
             {
                 for (int i = 0; i <= 2; i++)
                 {
@@ -160,13 +183,14 @@ namespace Platformer
                     }
                 }
             }
-            if (movingdown == false)
+            if (movingdown == true)
             {
                 for (int i = 0; i <= 2; i++)
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
                         theperson.Y = theperson.Y - 10;
+                        jumpdelay = false;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
@@ -174,6 +198,7 @@ namespace Platformer
                     if (theperson.IntersectsWith(area2[o]))
                     {
                         theperson.Y = theperson.Y - 10;
+                        jumpdelay = false;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
@@ -181,6 +206,7 @@ namespace Platformer
                     if (theperson.IntersectsWith(area3[p]))
                     {
                         theperson.Y = theperson.Y - 10;
+                                                jumpdelay = false;
                     }
                 } 
             }
@@ -190,21 +216,21 @@ namespace Platformer
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.X = theperson.X - 40;
+                        theperson.X = theperson.X - 10;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.X = theperson.X - 40;
+                        theperson.X = theperson.X - 10;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.X = theperson.X - 40;
+                        theperson.X = theperson.X - 10;
                     }
                 }
             }
@@ -214,21 +240,21 @@ namespace Platformer
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.X = theperson.X + 40;
+                        theperson.X = theperson.X + 10;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.X = theperson.X + 40;
+                        theperson.X = theperson.X + 10;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.X = theperson.X + 40;
+                        theperson.X = theperson.X + 10;
                     }
                 }
             }
