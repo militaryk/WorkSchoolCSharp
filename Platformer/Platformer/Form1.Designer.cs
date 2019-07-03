@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.TmrPlatform = new System.Windows.Forms.Timer(this.components);
             this.PnlGame = new System.Windows.Forms.Panel();
+            this.LblDiffDet = new System.Windows.Forms.Label();
+            this.TbDiff = new System.Windows.Forms.TextBox();
+            this.LblDiff = new System.Windows.Forms.Label();
+            this.BtnConfrimDiff = new System.Windows.Forms.Button();
             this.LblScore = new System.Windows.Forms.Label();
             this.TmrPerson = new System.Windows.Forms.Timer(this.components);
             this.BtnStart = new System.Windows.Forms.Button();
@@ -41,6 +45,8 @@
             this.BtnControl = new System.Windows.Forms.Button();
             this.TmrGravity = new System.Windows.Forms.Timer(this.components);
             this.TmrJump = new System.Windows.Forms.Timer(this.components);
+            this.BtnBack = new System.Windows.Forms.Button();
+            this.PnlGame.SuspendLayout();
             this.SuspendLayout();
             // 
             // TmrPlatform
@@ -50,11 +56,56 @@
             // PnlGame
             // 
             this.PnlGame.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.PnlGame.Controls.Add(this.LblDiffDet);
+            this.PnlGame.Controls.Add(this.TbDiff);
+            this.PnlGame.Controls.Add(this.LblDiff);
+            this.PnlGame.Controls.Add(this.BtnConfrimDiff);
             this.PnlGame.Location = new System.Drawing.Point(12, 43);
             this.PnlGame.Name = "PnlGame";
             this.PnlGame.Size = new System.Drawing.Size(780, 354);
             this.PnlGame.TabIndex = 0;
             this.PnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlGame_Paint);
+            // 
+            // LblDiffDet
+            // 
+            this.LblDiffDet.AutoSize = true;
+            this.LblDiffDet.Font = new System.Drawing.Font("Comic Sans MS", 12F);
+            this.LblDiffDet.Location = new System.Drawing.Point(219, 24);
+            this.LblDiffDet.Name = "LblDiffDet";
+            this.LblDiffDet.Size = new System.Drawing.Size(309, 23);
+            this.LblDiffDet.TabIndex = 3;
+            this.LblDiffDet.Text = "Please Enter Difficulty Between 1 and 10";
+            this.LblDiffDet.Visible = false;
+            // 
+            // TbDiff
+            // 
+            this.TbDiff.AccessibleRole = System.Windows.Forms.AccessibleRole.Outline;
+            this.TbDiff.Location = new System.Drawing.Point(319, 52);
+            this.TbDiff.Name = "TbDiff";
+            this.TbDiff.Size = new System.Drawing.Size(100, 20);
+            this.TbDiff.TabIndex = 2;
+            this.TbDiff.Visible = false;
+            // 
+            // LblDiff
+            // 
+            this.LblDiff.AutoSize = true;
+            this.LblDiff.Font = new System.Drawing.Font("Comic Sans MS", 25F);
+            this.LblDiff.Location = new System.Drawing.Point(36, 25);
+            this.LblDiff.Name = "LblDiff";
+            this.LblDiff.Size = new System.Drawing.Size(177, 47);
+            this.LblDiff.TabIndex = 1;
+            this.LblDiff.Text = "Difficulty";
+            this.LblDiff.Visible = false;
+            // 
+            // BtnConfrimDiff
+            // 
+            this.BtnConfrimDiff.Location = new System.Drawing.Point(550, 24);
+            this.BtnConfrimDiff.Name = "BtnConfrimDiff";
+            this.BtnConfrimDiff.Size = new System.Drawing.Size(206, 65);
+            this.BtnConfrimDiff.TabIndex = 0;
+            this.BtnConfrimDiff.Text = "Confirm Difficulty";
+            this.BtnConfrimDiff.UseVisualStyleBackColor = true;
+            this.BtnConfrimDiff.Visible = false;
             // 
             // LblScore
             // 
@@ -129,6 +180,7 @@
             this.BtnControl.TabIndex = 8;
             this.BtnControl.Text = "Controls";
             this.BtnControl.UseVisualStyleBackColor = false;
+            this.BtnControl.Click += new System.EventHandler(this.BtnControl_Click);
             // 
             // TmrGravity
             // 
@@ -139,11 +191,24 @@
             this.TmrJump.Interval = 1200;
             this.TmrJump.Tick += new System.EventHandler(this.TmrJump_Tick);
             // 
+            // BtnBack
+            // 
+            this.BtnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BtnBack.Location = new System.Drawing.Point(356, 403);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(75, 35);
+            this.BtnBack.TabIndex = 9;
+            this.BtnBack.Text = "Back";
+            this.BtnBack.UseVisualStyleBackColor = false;
+            this.BtnBack.Visible = false;
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 453);
+            this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.BtnControl);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.TbUser);
@@ -159,6 +224,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.PnlGame.ResumeLayout(false);
+            this.PnlGame.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,6 +245,11 @@
         private System.Windows.Forms.Button BtnControl;
         private System.Windows.Forms.Timer TmrGravity;
         private System.Windows.Forms.Timer TmrJump;
+        private System.Windows.Forms.Button BtnBack;
+        private System.Windows.Forms.Button BtnConfrimDiff;
+        private System.Windows.Forms.Label LblDiffDet;
+        private System.Windows.Forms.TextBox TbDiff;
+        private System.Windows.Forms.Label LblDiff;
     }
 }
 

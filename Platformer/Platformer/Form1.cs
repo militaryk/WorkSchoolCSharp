@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Platformer
 {
@@ -53,6 +54,7 @@ namespace Platformer
                     }
                 }
             }
+
             if (right)
             {
                 if (right) // if left arrow pressed
@@ -84,7 +86,7 @@ namespace Platformer
             }
             if (jumpdelay == true)
             {
-                
+
             }
             else
             {
@@ -102,7 +104,7 @@ namespace Platformer
             }
             MessageBox.Show("Game Over " + user + " you scored a whooping score of " + score);
         }
-        
+
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
@@ -129,7 +131,61 @@ namespace Platformer
 
         }
 
+        void HideGame()
+        {
+            PnlGame.Visible = false;
+            BtnConfirm.Visible = false;
+            BtnStart.Visible = false;
+            BtnStop.Visible = false;
+            LblScore.Visible = false;
+            LblUser.Visible = false;
+            TbUser.Visible = false;
+            BtnControl.Visible = false;
+            BtnBack.Visible = true;
+        }
+
+        void ShowGame()
+        {
+            PnlGame.Visible = true;
+            BtnConfirm.Visible = true;
+            BtnStart.Visible = true;
+            BtnStop.Visible = true;
+            LblScore.Visible = true;
+            LblUser.Visible = true;
+            TbUser.Visible = true;
+            BtnControl.Visible = true;
+            BtnBack.Visible = false;
+            BtnConfrimDiff.Visible = false;
+            LblDiff.Visible = false;
+            LblDiffDet.Visible = false;
+            TbDiff.Visible = false;
+        }
+
+        void ShowControls()
+        {
+            BtnConfrimDiff.Visible = true;
+            LblDiff.Visible = true;
+            LblDiffDet.Visible = true;
+            TbDiff.Visible = true;
+        }
+
+        private void BtnControl_Click(object sender, EventArgs e)
+        {
+            HideGame();
+            ShowControls();
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            ShowGame();
+        }
+
         private void TmrJump_Tick(object sender, EventArgs e)
+        {
+            DelayJump();
+        }
+
+        void DelayJump()
         {
             TmrJump.Enabled = false;
             jump = false;
@@ -166,6 +222,7 @@ namespace Platformer
                     if (theperson.IntersectsWith(area[i]))
                     {
                         theperson.Y = theperson.Y + 10;
+                        DelayJump();
                     }
                 }
                 for (int o = 0; o <= 2; o++)
@@ -173,6 +230,7 @@ namespace Platformer
                     if (theperson.IntersectsWith(area2[o]))
                     {
                         theperson.Y = theperson.Y + 10;
+                        DelayJump();
                     }
                 }
                 for (int p = 0; p <= 2; p++)
@@ -180,6 +238,7 @@ namespace Platformer
                     if (theperson.IntersectsWith(area3[p]))
                     {
                         theperson.Y = theperson.Y + 10;
+                        DelayJump();
                     }
                 }
             }
@@ -206,7 +265,7 @@ namespace Platformer
                     if (theperson.IntersectsWith(area3[p]))
                     {
                         theperson.Y = theperson.Y - 10;
-                                                jumpdelay = false;
+                        jumpdelay = false;
                     }
                 } 
             }
@@ -310,23 +369,33 @@ namespace Platformer
             int gap2 = rndgap2.Next(300, 300);
             Random rndgap3 = new Random();
             int gap3 = rndgap3.Next(300, 300);
+
+            Random rndlength1 = new Random();
+            int length1 = rndlength1.Next(150, 150);
+
+            Random rndlength2 = new Random();
+            int length2 = rndlength2.Next(150, 150);
+
+            Random rndlength3 = new Random();
+            int length3 = rndlength3.Next(150, 150);
             theperson = new Rectangle(xp-40 , yp-40, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
                 platformSpeed[i] = speed.Next(10, 20); //each platform has a random speed
-                area[i] = new Rectangle(x1 + gap * i, y, 150, 20);
+                area[i] = new Rectangle(x1 + gap * i, y, length1, 20);
             }
             for (int o = 0; o <= 2; o++)
             {
                 platform2Speed[o] = speed2.Next(10, 20); //each platform has a random speed
-                area2[o] = new Rectangle(x2 + gap2 * o, y2, 150, 20);
+                area2[o] = new Rectangle(x2 + gap2 * o, y2, length2, 20);
             }
             for (int p = 0; p <= 2; p++)
             {
                 platform3Speed[p] = speed3.Next(10, 20);
-                area3[p] = new Rectangle(x3 + gap3 * p, y3, 150, 20);
+                area3[p] = new Rectangle(x3 + gap3 * p, y3, length3, 20);
             }
             InitializeComponent();
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, PnlGame, new object[] { true });
         }
 
         private void PnlGame_Paint(object sender, PaintEventArgs e)
