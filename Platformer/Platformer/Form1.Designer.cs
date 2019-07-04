@@ -75,16 +75,17 @@
             this.LblDiffDet.Size = new System.Drawing.Size(309, 23);
             this.LblDiffDet.TabIndex = 3;
             this.LblDiffDet.Text = "Please Enter Difficulty Between 1 and 10";
-            this.LblDiffDet.Visible = false;
             // 
             // TbDiff
             // 
-            this.TbDiff.AccessibleRole = System.Windows.Forms.AccessibleRole.Outline;
+            this.TbDiff.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.TbDiff.Location = new System.Drawing.Point(319, 52);
             this.TbDiff.Name = "TbDiff";
             this.TbDiff.Size = new System.Drawing.Size(100, 20);
             this.TbDiff.TabIndex = 2;
-            this.TbDiff.Visible = false;
+            this.TbDiff.Text = "0";
+            this.TbDiff.TextChanged += new System.EventHandler(this.TbDiff_TextChanged);
+            this.TbDiff.Leave += new System.EventHandler(this.TbDiff_Leave);
             // 
             // LblDiff
             // 
@@ -95,7 +96,6 @@
             this.LblDiff.Size = new System.Drawing.Size(177, 47);
             this.LblDiff.TabIndex = 1;
             this.LblDiff.Text = "Difficulty";
-            this.LblDiff.Visible = false;
             // 
             // BtnConfrimDiff
             // 
@@ -105,7 +105,7 @@
             this.BtnConfrimDiff.TabIndex = 0;
             this.BtnConfrimDiff.Text = "Confirm Difficulty";
             this.BtnConfrimDiff.UseVisualStyleBackColor = true;
-            this.BtnConfrimDiff.Visible = false;
+            this.BtnConfrimDiff.Click += new System.EventHandler(this.BtnConfrimDiff_Click);
             // 
             // LblScore
             // 
@@ -159,7 +159,6 @@
             this.TbUser.Name = "TbUser";
             this.TbUser.Size = new System.Drawing.Size(100, 20);
             this.TbUser.TabIndex = 6;
-            this.TbUser.Text = "username";
             // 
             // LblUser
             // 

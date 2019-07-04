@@ -37,6 +37,7 @@ namespace Platformer
         int highscore;
         bool movingdown;
         string user;
+        int difficultymin, difficultymax;
 
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
@@ -142,6 +143,10 @@ namespace Platformer
             TbUser.Visible = false;
             BtnControl.Visible = false;
             BtnBack.Visible = true;
+            BtnConfrimDiff.Visible = true;
+            LblDiff.Visible = true;
+            LblDiffDet.Visible = true;
+            TbDiff.Visible = true;
         }
 
         void ShowGame()
@@ -161,23 +166,46 @@ namespace Platformer
             TbDiff.Visible = false;
         }
 
-        void ShowControls()
-        {
-            BtnConfrimDiff.Visible = true;
-            LblDiff.Visible = true;
-            LblDiffDet.Visible = true;
-            TbDiff.Visible = true;
-        }
-
         private void BtnControl_Click(object sender, EventArgs e)
         {
             HideGame();
-            ShowControls();
         }
-
         private void BtnBack_Click(object sender, EventArgs e)
         {
             ShowGame();
+        }
+
+        private void BtnConfrimDiff_Click(object sender, EventArgs e)
+        {
+            int diff = Int32.Parse(TbDiff.Text);
+            difficultymin = diff += 4;
+            difficultymax = diff -= 4;
+
+        }
+
+        private void TbDiff_Leave(object sender, EventArgs e)
+        {
+            if (TbDiff.Text == "")
+            {
+                MessageBox.Show("Please Enter Something");
+            }
+            else
+            {
+                int TbCheck = Int32.Parse(TbDiff.Text);
+                if (TbCheck > 30)
+                {
+                    TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - TbDiff.Text.Length);
+                }
+            }
+        }
+
+        private void TbDiff_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(TbDiff.Text, "[^0-9]")&& TbDiff.Text != null)
+            {
+                MessageBox.Show("Please enter only numbers.");
+                TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - 1);
+            }
         }
 
         private void TmrJump_Tick(object sender, EventArgs e)
@@ -381,17 +409,17 @@ namespace Platformer
             theperson = new Rectangle(xp-40 , yp-40, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
-                platformSpeed[i] = speed.Next(10, 20); //each platform has a random speed
+                platformSpeed[i] = speed.Next(difficultymin, difficultymax); //each platform has a random speed
                 area[i] = new Rectangle(x1 + gap * i, y, length1, 20);
             }
             for (int o = 0; o <= 2; o++)
             {
-                platform2Speed[o] = speed2.Next(10, 20); //each platform has a random speed
+                platform2Speed[o] = speed2.Next(difficultymin, difficultymax); //each platform has a random speed
                 area2[o] = new Rectangle(x2 + gap2 * o, y2, length2, 20);
             }
             for (int p = 0; p <= 2; p++)
             {
-                platform3Speed[p] = speed3.Next(10, 20);
+                platform3Speed[p] = speed3.Next(difficultymin, difficultymax);
                 area3[p] = new Rectangle(x3 + gap3 * p, y3, length3, 20);
             }
             InitializeComponent();
