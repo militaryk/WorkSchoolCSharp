@@ -169,6 +169,11 @@ namespace Platformer
         private void BtnControl_Click(object sender, EventArgs e)
         {
             HideGame();
+            BtnBack.Visible = true;
+            BtnConfrimDiff.Visible = true;
+            LblDiff.Visible = true;
+            LblDiffDet.Visible = true;
+            TbDiff.Visible = true;
         }
         private void BtnBack_Click(object sender, EventArgs e)
         {
