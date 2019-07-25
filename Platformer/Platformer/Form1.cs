@@ -30,6 +30,8 @@ namespace Platformer
         int x3 = 200, y3 = 300;
         int xp = 200, yp = 200;
         int score = 0;
+        int diffcontrol = 50;
+        int difftime = 1;
         int[] platformSpeed = new int[3];
         int[] platform2Speed = new int[3];
         int[] platform3Speed = new int[3];
@@ -114,8 +116,8 @@ namespace Platformer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right");
-            MessageBox.Show("Please Enter Username Before You Begin");
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 1 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
+            MessageBox.Show("Please Enter Username Before You Begin \n \n \n \n \n \n \n \n OR ELSE!");
         }
 
         private void BtnConfirm_Click(object sender, EventArgs e)
@@ -185,7 +187,7 @@ namespace Platformer
             Lbldiffmin.Text = diff.ToString();
             TmrPlatform.Interval = 100 / diff;
             TmrGravity.Interval = 100 / diff;
-
+            diffcontrol = 100 / diff;
         }
 
         private void TbDiff_Leave(object sender, EventArgs e)
@@ -214,9 +216,40 @@ namespace Platformer
             }
         }
 
-        private void TrPlatformChanging_Tick(object sender, EventArgs e)
+        private void TmrPlatformChange_Tick(object sender, EventArgs e)
         {
             TmrPlatformChange.Interval = platformchange;
+            Random pltchange = new Random();
+            int pltchng = pltchange.Next(1, 3);
+            if (pltchng == 1)
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    PnlGame.Invalidate();
+                }
+            }
+            if (pltchng == 3)
+            {
+                for (int o = 0; o <= 2; o++)
+                {
+                    PnlGame.Invalidate();
+                }
+            }
+            if (pltchng == 2)
+            {
+                for (int p = 0; p <= 2; p++)
+                {
+                    PnlGame.Invalidate();
+                }
+            }
+
+        }
+
+        private void TmrDiff_Tick(object sender, EventArgs e)
+        {
+            difftime += 1;
+            TmrPlatform.Interval = diffcontrol / difftime;
+            TmrGravity.Interval = diffcontrol / difftime;
         }
 
         private void TmrJump_Tick(object sender, EventArgs e)
@@ -408,7 +441,6 @@ namespace Platformer
             int gap2 = rndgap2.Next(300, 300);
             Random rndgap3 = new Random();
             int gap3 = rndgap3.Next(300, 300);
-
             Random rndlength1 = new Random();
             int length1 = rndlength1.Next(150, 150);
 

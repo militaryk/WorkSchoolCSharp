@@ -50,7 +50,7 @@
             this.LblXP = new System.Windows.Forms.Label();
             this.LblDifficulty = new System.Windows.Forms.Label();
             this.TmrPlatformChange = new System.Windows.Forms.Timer(this.components);
-            this.TmrPlatformChanging = new System.Windows.Forms.Timer(this.components);
+            this.TmrDiff = new System.Windows.Forms.Timer(this.components);
             this.PnlGame.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -244,10 +244,13 @@
             // TmrPlatformChange
             // 
             this.TmrPlatformChange.Enabled = true;
+            this.TmrPlatformChange.Interval = 10000;
+            this.TmrPlatformChange.Tick += new System.EventHandler(this.TmrPlatformChange_Tick);
             // 
-            // TmrPlatformChanging
+            // TmrDiff
             // 
-            this.TmrPlatformChanging.Tick += new System.EventHandler(this.TrPlatformChanging_Tick);
+            this.TmrDiff.Interval = 10000;
+            this.TmrDiff.Tick += new System.EventHandler(this.TmrDiff_Tick);
             // 
             // Form1
             // 
@@ -305,7 +308,7 @@
         private System.Windows.Forms.Label LblXP;
         private System.Windows.Forms.Label LblDifficulty;
         private System.Windows.Forms.Timer TmrPlatformChange;
-        private System.Windows.Forms.Timer TmrPlatformChanging;
+        private System.Windows.Forms.Timer TmrDiff;
     }
 }
 
