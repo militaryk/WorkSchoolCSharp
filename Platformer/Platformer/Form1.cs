@@ -37,8 +37,7 @@ namespace Platformer
         int highscore;
         bool movingdown;
         string user;
-        int difficultymin, difficultymax;
-
+        int platformchange = 1;
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
             if (left)
@@ -121,7 +120,7 @@ namespace Platformer
 
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right");
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 1 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -183,8 +182,9 @@ namespace Platformer
         private void BtnConfrimDiff_Click(object sender, EventArgs e)
         {
             int diff = Int32.Parse(TbDiff.Text);
-            difficultymin = diff += 4;
-            difficultymax = diff -= 4;
+            Lbldiffmin.Text = diff.ToString();
+            TmrPlatform.Interval = 100 / diff;
+            TmrGravity.Interval = 100 / diff;
 
         }
 
@@ -197,9 +197,10 @@ namespace Platformer
             else
             {
                 int TbCheck = Int32.Parse(TbDiff.Text);
-                if (TbCheck > 30)
+                if (TbCheck > 9)
                 {
                     TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - TbDiff.Text.Length);
+                    int diff = Int32.Parse(TbDiff.Text);
                 }
             }
         }
@@ -211,6 +212,11 @@ namespace Platformer
                 MessageBox.Show("Please enter only numbers.");
                 TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - 1);
             }
+        }
+
+        private void TrPlatformChanging_Tick(object sender, EventArgs e)
+        {
+            TmrPlatformChange.Interval = platformchange;
         }
 
         private void TmrJump_Tick(object sender, EventArgs e)
@@ -414,19 +420,21 @@ namespace Platformer
             theperson = new Rectangle(xp-40 , yp-40, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
-                platformSpeed[i] = speed.Next(difficultymin, difficultymax); //each platform has a random speed
+                platformSpeed[i] = speed.Next(1000, 1000); //each platform has a random speed
                 area[i] = new Rectangle(x1 + gap * i, y, length1, 20);
             }
             for (int o = 0; o <= 2; o++)
             {
-                platform2Speed[o] = speed2.Next(difficultymin, difficultymax); //each platform has a random speed
+                platform2Speed[o] = speed2.Next(1000, 1000); //each platform has a random speed
                 area2[o] = new Rectangle(x2 + gap2 * o, y2, length2, 20);
             }
             for (int p = 0; p <= 2; p++)
             {
-                platform3Speed[p] = speed3.Next(difficultymin, difficultymax);
+                platform3Speed[p] = speed3.Next(1000, 1000);
                 area3[p] = new Rectangle(x3 + gap3 * p, y3, length3, 20);
             }
+            Random pltchng = new Random();
+            platformchange = pltchng.Next(8000, 20000);
             InitializeComponent();
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, PnlGame, new object[] { true });
         }
@@ -472,6 +480,8 @@ namespace Platformer
             TmrPerson.Enabled = true;
             TmrPlatform.Enabled = true;
             TmrGravity.Enabled = true;
+            TbDiff.Enabled = false;
+            BtnConfrimDiff.Enabled = false;
         }
     }
 }
