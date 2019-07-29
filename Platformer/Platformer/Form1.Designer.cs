@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TmrPlatform = new System.Windows.Forms.Timer(this.components);
             this.PnlGame = new System.Windows.Forms.Panel();
             this.LblDiffDet = new System.Windows.Forms.Label();
@@ -62,8 +63,10 @@
             // PnlGame
             // 
             this.PnlGame.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.PnlGame.Controls.Add(this.LblDiffDet);
-            this.PnlGame.Controls.Add(this.LblDiff);
+            this.PnlGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PnlGame.BackgroundImage")));
+            this.PnlGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PnlGame.Controls.Add(this.BtnBack);
+            this.PnlGame.Controls.Add(this.BtnControl);
             this.PnlGame.Location = new System.Drawing.Point(12, 43);
             this.PnlGame.Name = "PnlGame";
             this.PnlGame.Size = new System.Drawing.Size(780, 354);
@@ -73,29 +76,27 @@
             // LblDiffDet
             // 
             this.LblDiffDet.AutoSize = true;
-            this.LblDiffDet.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.LblDiffDet.Location = new System.Drawing.Point(219, 24);
+            this.LblDiffDet.Font = new System.Drawing.Font("Comic Sans MS", 10F);
+            this.LblDiffDet.Location = new System.Drawing.Point(400, 405);
             this.LblDiffDet.Name = "LblDiffDet";
-            this.LblDiffDet.Size = new System.Drawing.Size(309, 23);
+            this.LblDiffDet.Size = new System.Drawing.Size(276, 19);
             this.LblDiffDet.TabIndex = 3;
             this.LblDiffDet.Text = "Please Enter Difficulty Between 1 and 10";
-            this.LblDiffDet.Visible = false;
             // 
             // LblDiff
             // 
             this.LblDiff.AutoSize = true;
-            this.LblDiff.Font = new System.Drawing.Font("Comic Sans MS", 25F);
-            this.LblDiff.Location = new System.Drawing.Point(36, 25);
+            this.LblDiff.Font = new System.Drawing.Font("Comic Sans MS", 10F);
+            this.LblDiff.Location = new System.Drawing.Point(398, 427);
             this.LblDiff.Name = "LblDiff";
-            this.LblDiff.Size = new System.Drawing.Size(177, 47);
+            this.LblDiff.Size = new System.Drawing.Size(73, 19);
             this.LblDiff.TabIndex = 1;
             this.LblDiff.Text = "Difficulty";
-            this.LblDiff.Visible = false;
             // 
             // TbDiff
             // 
             this.TbDiff.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.TbDiff.Location = new System.Drawing.Point(367, 418);
+            this.TbDiff.Location = new System.Drawing.Point(477, 426);
             this.TbDiff.Name = "TbDiff";
             this.TbDiff.Size = new System.Drawing.Size(100, 20);
             this.TbDiff.TabIndex = 2;
@@ -105,9 +106,9 @@
             // 
             // BtnConfrimDiff
             // 
-            this.BtnConfrimDiff.Location = new System.Drawing.Point(473, 403);
+            this.BtnConfrimDiff.Location = new System.Drawing.Point(583, 426);
             this.BtnConfrimDiff.Name = "BtnConfrimDiff";
-            this.BtnConfrimDiff.Size = new System.Drawing.Size(99, 35);
+            this.BtnConfrimDiff.Size = new System.Drawing.Size(99, 20);
             this.BtnConfrimDiff.TabIndex = 0;
             this.BtnConfrimDiff.Text = "Confirm Difficulty";
             this.BtnConfrimDiff.UseVisualStyleBackColor = true;
@@ -162,7 +163,7 @@
             // 
             // TbUser
             // 
-            this.TbUser.Location = new System.Drawing.Point(688, 418);
+            this.TbUser.Location = new System.Drawing.Point(692, 425);
             this.TbUser.Name = "TbUser";
             this.TbUser.Size = new System.Drawing.Size(100, 20);
             this.TbUser.TabIndex = 6;
@@ -171,7 +172,7 @@
             // 
             this.LblUser.AutoSize = true;
             this.LblUser.Font = new System.Drawing.Font("Comic Sans MS", 15F);
-            this.LblUser.Location = new System.Drawing.Point(578, 410);
+            this.LblUser.Location = new System.Drawing.Point(688, 396);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(104, 28);
             this.LblUser.TabIndex = 7;
@@ -180,7 +181,7 @@
             // BtnControl
             // 
             this.BtnControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnControl.Location = new System.Drawing.Point(392, 403);
+            this.BtnControl.Location = new System.Drawing.Point(270, 187);
             this.BtnControl.Name = "BtnControl";
             this.BtnControl.Size = new System.Drawing.Size(75, 35);
             this.BtnControl.TabIndex = 8;
@@ -202,7 +203,7 @@
             // BtnBack
             // 
             this.BtnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnBack.Location = new System.Drawing.Point(356, 403);
+            this.BtnBack.Location = new System.Drawing.Point(189, 187);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(75, 35);
             this.BtnBack.TabIndex = 9;
@@ -257,20 +258,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 453);
+            this.Controls.Add(this.LblDiff);
+            this.Controls.Add(this.LblDiffDet);
+            this.Controls.Add(this.PnlGame);
             this.Controls.Add(this.LblDifficulty);
             this.Controls.Add(this.LblXP);
             this.Controls.Add(this.Lbldiffmin);
-            this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.TbDiff);
             this.Controls.Add(this.BtnConfrimDiff);
-            this.Controls.Add(this.BtnControl);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.TbUser);
             this.Controls.Add(this.BtnConfirm);
             this.Controls.Add(this.BtnStop);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.LblScore);
-            this.Controls.Add(this.PnlGame);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
@@ -279,7 +280,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.PnlGame.ResumeLayout(false);
-            this.PnlGame.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
