@@ -39,6 +39,9 @@ namespace Platformer
         int highscore;
         bool movingdown;
         string user;
+        int leg1, leg2, leg3;
+        int gp1, gp2, gp3;
+        bool ingame;
         int platformchange = 1;
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
@@ -76,9 +79,12 @@ namespace Platformer
             {
                 theperson.Y -= -10;
             }
-            if (theperson.Y > 550)
+            if (ingame == true)
             {
-                Gameover();
+                if (theperson.Y > 550)
+                {
+                    Gameover();
+                }
             }
             if (jump == true)
             {
@@ -99,17 +105,35 @@ namespace Platformer
         void Gameover()
         {
             TmrPerson.Enabled = false;
+            ingame = false;
             TmrPlatform.Enabled = false;
+            theperson.Y = 800;
             if (score >= highscore)
             {
                 highscore = score;
             }
             MessageBox.Show("Game Over " + user + " you scored a whooping score of " + score);
+            theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
+            for (int i = 0; i <= 2; i++)
+            {
+                area[i] = new Rectangle(x1 + gp1 * i, y, leg1, 20);
+            }
+            for (int o = 0; o <= 2; o++)
+            {
+                area2[o] = new Rectangle(x2 + gp2 * o, y2, leg2, 20);
+            }
+            for (int p = 0; p <= 2; p++)
+            {
+                area3[p] = new Rectangle(x3 + gp3 * p, y3, leg3, 20);
+            }
+            InitializeComponent();
+            BtnStart.Enabled = true;
         }
 
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
+            ingame = true;
             Gamestart();
         }
 
@@ -435,7 +459,6 @@ namespace Platformer
         }
         public Form1()
         {
-            Cursor myCursor = new Cursor(@"\mousepointer.cur");
             Random rndgap = new Random();
             int gap = rndgap.Next(300, 300);
             Random rndgap2 = new Random();
@@ -444,10 +467,8 @@ namespace Platformer
             int gap3 = rndgap3.Next(300, 300);
             Random rndlength1 = new Random();
             int length1 = rndlength1.Next(150, 150);
-
             Random rndlength2 = new Random();
             int length2 = rndlength2.Next(150, 150);
-
             Random rndlength3 = new Random();
             int length3 = rndlength3.Next(150, 150);
             theperson = new Rectangle(xp-40 , yp-40, 20, 20);
@@ -469,6 +490,12 @@ namespace Platformer
             Random pltchng = new Random();
             platformchange = pltchng.Next(8000, 20000);
             InitializeComponent();
+            leg1 = length1;
+            leg2 = length2;
+            leg3 = length3;
+            gap = gp1;
+            gap2 = gp2;
+            gap3 = gp3;
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, PnlGame, new object[] { true });
         }
 
