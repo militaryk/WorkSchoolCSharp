@@ -43,16 +43,13 @@
             this.BtnConfirm = new System.Windows.Forms.Button();
             this.TbUser = new System.Windows.Forms.TextBox();
             this.LblUser = new System.Windows.Forms.Label();
-            this.BtnControl = new System.Windows.Forms.Button();
             this.TmrGravity = new System.Windows.Forms.Timer(this.components);
             this.TmrJump = new System.Windows.Forms.Timer(this.components);
-            this.BtnBack = new System.Windows.Forms.Button();
             this.Lbldiffmin = new System.Windows.Forms.Label();
             this.LblXP = new System.Windows.Forms.Label();
             this.LblDifficulty = new System.Windows.Forms.Label();
             this.TmrPlatformChange = new System.Windows.Forms.Timer(this.components);
             this.TmrDiff = new System.Windows.Forms.Timer(this.components);
-            this.PnlGame.SuspendLayout();
             this.SuspendLayout();
             // 
             // TmrPlatform
@@ -65,8 +62,6 @@
             this.PnlGame.BackColor = System.Drawing.SystemColors.ControlDark;
             this.PnlGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PnlGame.BackgroundImage")));
             this.PnlGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PnlGame.Controls.Add(this.BtnBack);
-            this.PnlGame.Controls.Add(this.BtnControl);
             this.PnlGame.Location = new System.Drawing.Point(12, 43);
             this.PnlGame.Name = "PnlGame";
             this.PnlGame.Size = new System.Drawing.Size(780, 354);
@@ -178,18 +173,6 @@
             this.LblUser.TabIndex = 7;
             this.LblUser.Text = "Username";
             // 
-            // BtnControl
-            // 
-            this.BtnControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnControl.Location = new System.Drawing.Point(270, 187);
-            this.BtnControl.Name = "BtnControl";
-            this.BtnControl.Size = new System.Drawing.Size(75, 35);
-            this.BtnControl.TabIndex = 8;
-            this.BtnControl.Text = "Controls";
-            this.BtnControl.UseVisualStyleBackColor = false;
-            this.BtnControl.Visible = false;
-            this.BtnControl.Click += new System.EventHandler(this.BtnControl_Click);
-            // 
             // TmrGravity
             // 
             this.TmrGravity.Interval = 50;
@@ -199,18 +182,6 @@
             // 
             this.TmrJump.Interval = 700;
             this.TmrJump.Tick += new System.EventHandler(this.TmrJump_Tick);
-            // 
-            // BtnBack
-            // 
-            this.BtnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnBack.Location = new System.Drawing.Point(189, 187);
-            this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(75, 35);
-            this.BtnBack.TabIndex = 9;
-            this.BtnBack.Text = "Back";
-            this.BtnBack.UseVisualStyleBackColor = false;
-            this.BtnBack.Visible = false;
-            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // Lbldiffmin
             // 
@@ -279,7 +250,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-            this.PnlGame.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,10 +266,8 @@
         private System.Windows.Forms.Button BtnConfirm;
         private System.Windows.Forms.TextBox TbUser;
         private System.Windows.Forms.Label LblUser;
-        private System.Windows.Forms.Button BtnControl;
         private System.Windows.Forms.Timer TmrGravity;
         private System.Windows.Forms.Timer TmrJump;
-        private System.Windows.Forms.Button BtnBack;
         private System.Windows.Forms.Button BtnConfrimDiff;
         private System.Windows.Forms.Label LblDiffDet;
         private System.Windows.Forms.TextBox TbDiff;

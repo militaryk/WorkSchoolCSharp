@@ -166,8 +166,6 @@ namespace Platformer
             LblScore.Visible = false;
             LblUser.Visible = false;
             TbUser.Visible = false;
-            BtnControl.Visible = false;
-            BtnBack.Visible = true;
             BtnConfrimDiff.Visible = true;
             LblDiff.Visible = true;
             LblDiffDet.Visible = true;
@@ -183,8 +181,6 @@ namespace Platformer
             LblScore.Visible = true;
             LblUser.Visible = true;
             TbUser.Visible = true;
-            BtnControl.Visible = true;
-            BtnBack.Visible = false;
             BtnConfrimDiff.Visible = false;
             LblDiff.Visible = false;
             LblDiffDet.Visible = false;
@@ -194,7 +190,6 @@ namespace Platformer
         private void BtnControl_Click(object sender, EventArgs e)
         {
             HideGame();
-            BtnBack.Visible = true;
             BtnConfrimDiff.Visible = true;
             LblDiff.Visible = true;
             LblDiffDet.Visible = true;
@@ -536,7 +531,6 @@ namespace Platformer
             BtnStop.Enabled = false;
             BtnConfirm.Enabled = false;
             TbUser.Enabled = false;
-            BtnControl.Enabled = false;
             TmrPerson.Enabled = true;
             TmrPlatform.Enabled = true;
             TmrGravity.Enabled = true;
