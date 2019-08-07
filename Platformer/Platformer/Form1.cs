@@ -18,6 +18,7 @@ namespace Platformer
         Rectangle[] area2 = new Rectangle[3];//area[0] to area[3]
         Rectangle[] area3 = new Rectangle[3];//area[0] to area[3]
         Rectangle theperson;
+        Rectangle therocket;
         Random speed = new Random();
         Random speed2 = new Random();
         Random speed3 = new Random();
@@ -25,6 +26,7 @@ namespace Platformer
         Image platform2 = Image.FromFile(Application.StartupPath + @"\platform.png");
         Image platform3 = Image.FromFile(Application.StartupPath + @"\platform.png");
         Image person = Image.FromFile(Application.StartupPath + @"\person.jpg");
+        Image rocket = Image.FromFile(Application.StartupPath + @"\tjrocket.png");
         int x1 = 200, y = 100;
         int x2 = 200, y2 = 200;
         int x3 = 200, y3 = 300;
@@ -451,6 +453,20 @@ namespace Platformer
                     area3[p].X = 800;
                 }
             }
+            therocket.X += 40;
+            if (therocket.X > 800)
+            {
+                score += 1; //add 1 to score
+                LblScore.Text = score.ToString(); //display score on form
+                Random rocketlayer = new Random();
+                int rcktlayer = rocketlayer.Next(25, 375);
+                therocket.Y = rcktlayer;
+                therocket.X = -200;
+            }
+            if (theperson.IntersectsWith(therocket))
+            {
+                Gameover();
+            }
         }
         public Form1()
         {
@@ -466,7 +482,6 @@ namespace Platformer
             int length2 = rndlength2.Next(150, 150);
             Random rndlength3 = new Random();
             int length3 = rndlength3.Next(150, 150);
-            theperson = new Rectangle(xp-40 , yp-40, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
                 platformSpeed[i] = speed.Next(1000, 1000); //each platform has a random speed
@@ -482,6 +497,8 @@ namespace Platformer
                 platform3Speed[p] = speed3.Next(1000, 1000);
                 area3[p] = new Rectangle(x3 + gap3 * p, y3, length3, 20);
             }
+            theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
+            therocket = new Rectangle(xp - 40, yp - 40, 140, 100);
             Random pltchng = new Random();
             platformchange = pltchng.Next(8000, 20000);
             InitializeComponent();
@@ -499,6 +516,7 @@ namespace Platformer
             //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
             g.DrawImage(person, theperson);
+            g.DrawImage(rocket, therocket);
             //use the DrawImage method to draw the platform on the panel
             for (int i = 0; i <= 2; i++)
             {
