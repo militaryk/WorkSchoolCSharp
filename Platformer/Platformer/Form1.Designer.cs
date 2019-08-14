@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TmrPlatform = new System.Windows.Forms.Timer(this.components);
             this.PnlGame = new System.Windows.Forms.Panel();
             this.LblDiffDet = new System.Windows.Forms.Label();
@@ -60,7 +59,6 @@
             // PnlGame
             // 
             this.PnlGame.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.PnlGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PnlGame.BackgroundImage")));
             this.PnlGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PnlGame.Location = new System.Drawing.Point(12, 43);
             this.PnlGame.Name = "PnlGame";

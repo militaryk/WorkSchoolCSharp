@@ -22,11 +22,11 @@ namespace Platformer
         Random speed = new Random();
         Random speed2 = new Random();
         Random speed3 = new Random();
-        Image platform = Image.FromFile(Application.StartupPath + @"\platform.png");
-        Image platform2 = Image.FromFile(Application.StartupPath + @"\platform.png");
-        Image platform3 = Image.FromFile(Application.StartupPath + @"\platform.png");
-        Image person = Image.FromFile(Application.StartupPath + @"\person.jpg");
-        Image rocket = Image.FromFile(Application.StartupPath + @"\tjrocket.png");
+        Image platform = Image.FromFile(Application.StartupPath + @"\platform.jpg");
+        Image platform2 = Image.FromFile(Application.StartupPath + @"\platform.jpg");
+        Image platform3 = Image.FromFile(Application.StartupPath + @"\platform.jpg");
+        Image person = Image.FromFile(Application.StartupPath + @"\person.png");
+        Image rocket = Image.FromFile(Application.StartupPath + @"\rocket.png");
         int x1 = 200, y = 100;
         int x2 = 200, y2 = 200;
         int x3 = 200, y3 = 300;
@@ -39,8 +39,8 @@ namespace Platformer
         int[] platform3Speed = new int[3];
         bool left, right, gravity = true, jump, jumpdelay = false;
         int highscore;
-        bool movingdown;
         string user;
+        bool movingdown;
         int leg1, leg2, leg3;
         int gp1, gp2, gp3;
         bool ingame;
@@ -137,6 +137,7 @@ namespace Platformer
         {
             ingame = true;
             Gamestart();
+            user = TbUser.Text;
         }
 
 
@@ -368,21 +369,21 @@ namespace Platformer
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.X = theperson.X - 10;
+                        theperson.X = theperson.X - 40;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.X = theperson.X - 10;
+                        theperson.X = theperson.X - 40;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.X = theperson.X - 10;
+                        theperson.X = theperson.X - 40;
                     }
                 }
             }
@@ -392,21 +393,21 @@ namespace Platformer
                 {
                     if (theperson.IntersectsWith(area[i]))
                     {
-                        theperson.X = theperson.X + 10;
+                        theperson.X = theperson.X + 40;
                     }
                 }
                 for (int o = 0; o <= 2; o++)
                 {
                     if (theperson.IntersectsWith(area2[o]))
                     {
-                        theperson.X = theperson.X + 10;
+                        theperson.X = theperson.X + 40;
                     }
                 }
                 for (int p = 0; p <= 2; p++)
                 {
                     if (theperson.IntersectsWith(area3[p]))
                     {
-                        theperson.X = theperson.X + 10;
+                        theperson.X = theperson.X + 40;
                     }
                 }
             }
@@ -498,7 +499,7 @@ namespace Platformer
                 area3[p] = new Rectangle(x3 + gap3 * p, y3, length3, 20);
             }
             theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
-            therocket = new Rectangle(xp - 40, yp - 40, 140, 100);
+            therocket = new Rectangle(xp - 40, yp - 40, 140, 80);
             Random pltchng = new Random();
             platformchange = pltchng.Next(8000, 20000);
             InitializeComponent();
@@ -555,487 +556,5 @@ namespace Platformer
             TbDiff.Enabled = false;
             BtnConfrimDiff.Enabled = false;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
