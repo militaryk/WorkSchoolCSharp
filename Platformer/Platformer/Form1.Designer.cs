@@ -39,7 +39,7 @@
             this.TmrPerson = new System.Windows.Forms.Timer(this.components);
             this.BtnStart = new System.Windows.Forms.Button();
             this.BtnStop = new System.Windows.Forms.Button();
-            this.BtnConfirm = new System.Windows.Forms.Button();
+            this.BtnInstruction = new System.Windows.Forms.Button();
             this.TbUser = new System.Windows.Forms.TextBox();
             this.LblUser = new System.Windows.Forms.Label();
             this.TmrGravity = new System.Windows.Forms.Timer(this.components);
@@ -47,8 +47,6 @@
             this.Lbldiffmin = new System.Windows.Forms.Label();
             this.LblXP = new System.Windows.Forms.Label();
             this.LblDifficulty = new System.Windows.Forms.Label();
-            this.TmrPlatformChange = new System.Windows.Forms.Timer(this.components);
-            this.TmrDiff = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // TmrPlatform
@@ -143,16 +141,16 @@
             this.BtnStop.Text = "Stop";
             this.BtnStop.UseVisualStyleBackColor = false;
             // 
-            // BtnConfirm
+            // BtnInstruction
             // 
-            this.BtnConfirm.BackColor = System.Drawing.Color.Aqua;
-            this.BtnConfirm.Location = new System.Drawing.Point(275, 403);
-            this.BtnConfirm.Name = "BtnConfirm";
-            this.BtnConfirm.Size = new System.Drawing.Size(75, 35);
-            this.BtnConfirm.TabIndex = 5;
-            this.BtnConfirm.Text = "Instructions";
-            this.BtnConfirm.UseVisualStyleBackColor = false;
-            this.BtnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
+            this.BtnInstruction.BackColor = System.Drawing.Color.Aqua;
+            this.BtnInstruction.Location = new System.Drawing.Point(275, 403);
+            this.BtnInstruction.Name = "BtnInstruction";
+            this.BtnInstruction.Size = new System.Drawing.Size(75, 35);
+            this.BtnInstruction.TabIndex = 5;
+            this.BtnInstruction.Text = "Instructions";
+            this.BtnInstruction.UseVisualStyleBackColor = false;
+            this.BtnInstruction.Click += new System.EventHandler(this.BtnInstruction_Click);
             // 
             // TbUser
             // 
@@ -211,17 +209,6 @@
             this.LblDifficulty.TabIndex = 12;
             this.LblDifficulty.Text = "Difficulty:";
             // 
-            // TmrPlatformChange
-            // 
-            this.TmrPlatformChange.Enabled = true;
-            this.TmrPlatformChange.Interval = 10000;
-            this.TmrPlatformChange.Tick += new System.EventHandler(this.TmrPlatformChange_Tick);
-            // 
-            // TmrDiff
-            // 
-            this.TmrDiff.Interval = 10000;
-            this.TmrDiff.Tick += new System.EventHandler(this.TmrDiff_Tick);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,7 +224,7 @@
             this.Controls.Add(this.BtnConfrimDiff);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.TbUser);
-            this.Controls.Add(this.BtnConfirm);
+            this.Controls.Add(this.BtnInstruction);
             this.Controls.Add(this.BtnStop);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.LblScore);
@@ -261,7 +248,7 @@
         private System.Windows.Forms.Timer TmrPlatform;
         private System.Windows.Forms.Button BtnStart;
         private System.Windows.Forms.Button BtnStop;
-        private System.Windows.Forms.Button BtnConfirm;
+        private System.Windows.Forms.Button BtnInstruction;
         private System.Windows.Forms.TextBox TbUser;
         private System.Windows.Forms.Label LblUser;
         private System.Windows.Forms.Timer TmrGravity;
@@ -273,8 +260,6 @@
         private System.Windows.Forms.Label Lbldiffmin;
         private System.Windows.Forms.Label LblXP;
         private System.Windows.Forms.Label LblDifficulty;
-        private System.Windows.Forms.Timer TmrPlatformChange;
-        private System.Windows.Forms.Timer TmrDiff;
     }
 }
 

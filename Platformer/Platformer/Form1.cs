@@ -17,104 +17,98 @@ namespace Platformer
         Rectangle[] area = new Rectangle[3];//area[0] to area[3]
         Rectangle[] area2 = new Rectangle[3];//area[0] to area[3]
         Rectangle[] area3 = new Rectangle[3];//area[0] to area[3]
-        Rectangle theperson;
-        Rectangle therocket;
-        Random speed = new Random();
-        Random speed2 = new Random();
-        Random speed3 = new Random();
-        Image platform = Image.FromFile(Application.StartupPath + @"\platform.jpg");
-        Image platform2 = Image.FromFile(Application.StartupPath + @"\platform.jpg");
-        Image platform3 = Image.FromFile(Application.StartupPath + @"\platform.jpg");
-        Image person = Image.FromFile(Application.StartupPath + @"\person.png");
-        Image rocket = Image.FromFile(Application.StartupPath + @"\rocket.png");
-        int x1 = 200, y = 100;
-        int x2 = 200, y2 = 200;
-        int x3 = 200, y3 = 300;
-        int xp = 200, yp = 200;
-        int score = 0;
-        int diffcontrol = 50;
-        int difftime = 1;
-        int[] platformSpeed = new int[3];
-        int[] platform2Speed = new int[3];
-        int[] platform3Speed = new int[3];
-        bool left, right, gravity = true, jump, jumpdelay = false;
-        int highscore;
-        string user;
-        bool movingdown;
-        int leg1, leg2, leg3;
-        int gp1, gp2, gp3;
-        bool ingame;
-        int platformchange = 1;
+        Rectangle theperson; // theperson
+        Rectangle therocket; // Rocket
+        Random speed = new Random(); //speed of platforms 1's
+        Random speed2 = new Random(); //speed of platform 2's
+        Random speed3 = new Random(); //speed of platform 3's
+        Image platform = Image.FromFile(Application.StartupPath + @"\platform.jpg");// graphics for platform 1
+        Image platform2 = Image.FromFile(Application.StartupPath + @"\platform.jpg");// graphics for platform 2
+        Image platform3 = Image.FromFile(Application.StartupPath + @"\platform.jpg");// graphics for platform 3
+        Image person = Image.FromFile(Application.StartupPath + @"\person.png");// graphics for person/character
+        Image rocket = Image.FromFile(Application.StartupPath + @"\rocket.png");// graphics for rocket
+        int x1 = 200, y = 100;// starting location for platform 1
+        int x2 = 200, y2 = 200;// starting location for platform 2
+        int x3 = 200, y3 = 300;// starting location for platform 3
+        int xp = 200, yp = 200;// starting location for person
+        int score = 0;// score int
+        int diffcontrol = 50; // default difficulty int
+        int difftime = 1; // difficulty default time
+        int[] platformSpeed = new int[3]; //Speed of platform 1's  
+        int[] platform2Speed = new int[3];//Speed of platform 2's
+        int[] platform3Speed = new int[3]; //Speed of platforms 3's
+        bool left, right, gravity = true, jump, jumpdelay = false; // controls for left, right, gravity affecting player, jump, should jump be delayed
+        int highscore; // highscore, doesnt save over games
+        string user; // username
+        bool movingdown; // Is the player moving down?
+        int leg1, leg2, leg3; // length of platforms
+        int gp1, gp2, gp3; // controls gaps between platforms
+        bool ingame; // is the player ingame
         private void TmrPerson_Tick(object sender, EventArgs e)
         {
-            if (left)
+            if (left) // move the player left
             {
-                if (left) // if left arrow pressed
-                {
-                    if (theperson.X < 10) //check to see if person within 10 of left side
+                    if (theperson.X < 10)
                     {
                         theperson.X = 10;
                     }
                     else
                     {
-                        theperson.X -= 10; //else move 5 to the left
+                        theperson.X -= 10;
                     }
-                }
             }
 
-            if (right)
+            if (right)  // move the player right
             {
-                if (right) // if left arrow pressed
-                {
-                    if (theperson.X > PnlGame.Width - 40)// is person within 40 of right side
+                    if (theperson.X > PnlGame.Width - 40)
                     {
                         theperson.X = PnlGame.Width - 40;
                         theperson.X = PnlGame.Width - 40;
                     }
                     else
                     {
-                        theperson.X += 10; //else move 5 to the left
+                        theperson.X += 10;
                     }
-                }
             }
-            if (theperson.Y < -10)// is person within 40 of right side
+            if (theperson.Y < -10) 
             {
-                theperson.Y -= -10;
+                //theperson.Y -= -10;
             }
-            if (ingame == true)
+            if (ingame == true) // is the person ingame
             {
-                if (theperson.Y > 550)
+                if (theperson.Y > 550) // if the person is higher than 500, if so game over.
                 {
-                    Gameover();
+                    Gameover(); // game over method
                 }
             }
-            if (jump == true)
+            if (jump == true) // jump if jump is true
             {
                 gravity = false;
                 TmrJump.Enabled = true;
                 jumpdelay = true;
             }
-            if (jumpdelay == true)
+            if (jumpdelay == true) // if jump true do nothing
             {
 
             }
-            else
+            else // if jump isnt true gravity is a thing
             {
                 gravity = true;
             }
         }
 
-        void Gameover()
+        void Gameover() //method to play when game is over.
         {
             TmrPerson.Enabled = false;
             ingame = false;
             TmrPlatform.Enabled = false;
             theperson.Y = 800;
-            if (score >= highscore)
+            if (score >= highscore) // set highscore
             {
                 highscore = score;
             }
             MessageBox.Show("Game Over " + user + " you scored a whooping score of " + score);
+            // reset game (Still in progress)
             theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
             for (int i = 0; i <= 2; i++)
             {
@@ -133,7 +127,7 @@ namespace Platformer
         }
 
 
-        private void BtnStart_Click(object sender, EventArgs e)
+        private void BtnStart_Click(object sender, EventArgs e) // if button start is clicked
         {
             ingame = true;
             Gamestart();
@@ -141,18 +135,18 @@ namespace Platformer
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) // instructions to play beofre game apears
         {
-            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 1 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
             MessageBox.Show("Please Enter Username Before You Begin \n \n \n \n \n \n \n \n OR ELSE!");
         }
 
-        private void BtnConfirm_Click(object sender, EventArgs e)
+        private void BtnInstruction_Click(object sender, EventArgs e) // Instructions if player wishes to read them again
         {
-            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 1 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e) // if a key is pressed, controls movement
         {
             if (e.KeyData == Keys.Left) { left = true; }
             if (e.KeyData == Keys.Right) { right = true; }
@@ -160,50 +154,7 @@ namespace Platformer
 
         }
 
-        void HideGame()
-        {
-            PnlGame.Visible = false;
-            BtnConfirm.Visible = false;
-            BtnStart.Visible = false;
-            BtnStop.Visible = false;
-            LblScore.Visible = false;
-            LblUser.Visible = false;
-            TbUser.Visible = false;
-            BtnConfrimDiff.Visible = true;
-            LblDiff.Visible = true;
-            LblDiffDet.Visible = true;
-            TbDiff.Visible = true;
-        }
-
-        void ShowGame()
-        {
-            PnlGame.Visible = true;
-            BtnConfirm.Visible = true;
-            BtnStart.Visible = true;
-            BtnStop.Visible = true;
-            LblScore.Visible = true;
-            LblUser.Visible = true;
-            TbUser.Visible = true;
-            BtnConfrimDiff.Visible = false;
-            LblDiff.Visible = false;
-            LblDiffDet.Visible = false;
-            TbDiff.Visible = false;
-        }
-
-        private void BtnControl_Click(object sender, EventArgs e)
-        {
-            HideGame();
-            BtnConfrimDiff.Visible = true;
-            LblDiff.Visible = true;
-            LblDiffDet.Visible = true;
-            TbDiff.Visible = true;
-        }
-        private void BtnBack_Click(object sender, EventArgs e)
-        {
-            ShowGame();
-        }
-
-        private void BtnConfrimDiff_Click(object sender, EventArgs e)
+        private void BtnConfrimDiff_Click(object sender, EventArgs e) // Changes difficulty if player clicks confirm difficulty, otherwise its default at 2
         {
             int diff = Int32.Parse(TbDiff.Text);
             Lbldiffmin.Text = diff.ToString();
@@ -212,7 +163,7 @@ namespace Platformer
             diffcontrol = 100 / diff;
         }
 
-        private void TbDiff_Leave(object sender, EventArgs e)
+        private void TbDiff_Leave(object sender, EventArgs e) // If the player trys to leave text box blank, if not blank change diff int
         {
             if (TbDiff.Text == "")
             {
@@ -229,7 +180,7 @@ namespace Platformer
             }
         }
 
-        private void TbDiff_TextChanged(object sender, EventArgs e)
+        private void TbDiff_TextChanged(object sender, EventArgs e) // if the person trys to enter something that isnt a number or leave it blank
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(TbDiff.Text, "[^0-9]")&& TbDiff.Text != null)
             {
@@ -238,55 +189,19 @@ namespace Platformer
             }
         }
 
-        private void TmrPlatformChange_Tick(object sender, EventArgs e)
-        {
-            TmrPlatformChange.Interval = platformchange;
-            Random pltchange = new Random();
-            int pltchng = pltchange.Next(1, 3);
-            if (pltchng == 1)
-            {
-                for (int i = 0; i <= 2; i++)
-                {
-                    PnlGame.Invalidate();
-                }
-            }
-            if (pltchng == 3)
-            {
-                for (int o = 0; o <= 2; o++)
-                {
-                    PnlGame.Invalidate();
-                }
-            }
-            if (pltchng == 2)
-            {
-                for (int p = 0; p <= 2; p++)
-                {
-                    PnlGame.Invalidate();
-                }
-            }
-
-        }
-
-        private void TmrDiff_Tick(object sender, EventArgs e)
-        {
-            difftime += 1;
-            TmrPlatform.Interval = diffcontrol / difftime;
-            TmrGravity.Interval = diffcontrol / difftime;
-        }
-
-        private void TmrJump_Tick(object sender, EventArgs e)
+        private void TmrJump_Tick(object sender, EventArgs e) //Tmr to control jump
         {
             DelayJump();
         }
 
-        void DelayJump()
+        void DelayJump() //Method for the delay of the jump
         {
             TmrJump.Enabled = false;
             jump = false;
             gravity = true;
         }
 
-        private void TmrGravity_Tick(object sender, EventArgs e)
+        private void TmrGravity_Tick(object sender, EventArgs e) // Controls gravity for the game
         {
             if (gravity == true)
             {
@@ -300,16 +215,16 @@ namespace Platformer
             }
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void Form1_KeyUp(object sender, KeyEventArgs e) // if the player release a key, controls movements
         {
             if (e.KeyData == Keys.Left) { left = false; }
             if (e.KeyData == Keys.Right) { right = false; }
             if (e.KeyData == Keys.Space) { jump = false; }
         }
 
-        private void TmrPlatform_Tick(object sender, EventArgs e)
+        private void TmrPlatform_Tick(object sender, EventArgs e) // controls the movement of the platforms, and if the player intersects with the platform, and rocket.
         {
-            if (movingdown == false)
+            if (movingdown == false) // if the player intesects with the platform from the bottom repulse the character downwards.
             {
                 for (int i = 0; i <= 2; i++)
                 {
@@ -336,7 +251,7 @@ namespace Platformer
                     }
                 }
             }
-            if (movingdown == true)
+            if (movingdown == true) // if the player intersects with the platfrom from the top repluse the character upwards
             {
                 for (int i = 0; i <= 2; i++)
                 {
@@ -363,7 +278,7 @@ namespace Platformer
                     }
                 } 
             }
-            if (right == true)
+            if (right == true) // if the player intersects with the platform from the right, repluse the character left
             {
                 for (int i = 0; i <= 2; i++)
                 {
@@ -387,7 +302,7 @@ namespace Platformer
                     }
                 }
             }
-            if (left == true)
+            if (left == true) // if the player intersects with the platform from the left, repulse the character right
             {
                 for (int i = 0; i <= 2; i++)
                 {
@@ -410,7 +325,8 @@ namespace Platformer
                         theperson.X = theperson.X + 40;
                     }
                 }
-            }
+            } 
+            // platform movement
             for (int i = 0; i <= 2; i++)
             {
                 area[i].X -= platformSpeed[i];
@@ -424,7 +340,8 @@ namespace Platformer
                 area3[p].X -= platform3Speed[p];
             }
             PnlGame.Invalidate();
-            for (int i = 0; i <= 2; i++)
+            
+            for (int i = 0; i <= 2; i++)  // if the platform exits the screen give a point
             {
                 if (area[i].X < -200)
                 {
@@ -434,7 +351,7 @@ namespace Platformer
                     area[i].X = 800;
                 }
             }
-            for (int o = 0; o <= 2; o++)
+            for (int o = 0; o <= 2; o++) // if the platform exits the screen give a point
             {
                 if (area2[o].X < -200)
                 {
@@ -444,7 +361,7 @@ namespace Platformer
                     area2[o].X = 800;
                 }
             }
-            for (int p = 0; p <= 2; p++)
+            for (int p = 0; p <= 2; p++) // if the platform exits the screen give a point
             {
                 if (area3[p].X < -200)
                 {
@@ -455,7 +372,7 @@ namespace Platformer
                 }
             }
             therocket.X += 40;
-            if (therocket.X > 800)
+            if (therocket.X > 800) // if the rocket exits the screen
             {
                 score += 1; //add 1 to score
                 LblScore.Text = score.ToString(); //display score on form
@@ -501,7 +418,6 @@ namespace Platformer
             theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
             therocket = new Rectangle(xp - 40, yp - 40, 140, 80);
             Random pltchng = new Random();
-            platformchange = pltchng.Next(8000, 20000);
             InitializeComponent();
             leg1 = length1;
             leg2 = length2;
@@ -548,7 +464,7 @@ namespace Platformer
         {
             BtnStart.Enabled = false;
             BtnStop.Enabled = false;
-            BtnConfirm.Enabled = false;
+            BtnInstruction.Enabled = false;
             TbUser.Enabled = false;
             TmrPerson.Enabled = true;
             TmrPlatform.Enabled = true;
