@@ -379,7 +379,7 @@ namespace Platformer
                 Random rocketlayer = new Random();
                 int rcktlayer = rocketlayer.Next(25, 375);
                 therocket.Y = rcktlayer;
-                therocket.X = -200;
+                therocket.X = -100;
             }
             if (theperson.IntersectsWith(therocket))
             {
@@ -389,39 +389,33 @@ namespace Platformer
         public Form1()
         {
             Random rndgap = new Random();
-            int gap = rndgap.Next(300, 300);
+            int gap = rndgap.Next(240, 360);
             Random rndgap2 = new Random();
-            int gap2 = rndgap2.Next(300, 300);
+            int gap2 = rndgap2.Next(240, 360);
             Random rndgap3 = new Random();
-            int gap3 = rndgap3.Next(300, 300);
-            Random rndlength1 = new Random();
-            int length1 = rndlength1.Next(150, 150);
-            Random rndlength2 = new Random();
-            int length2 = rndlength2.Next(150, 150);
-            Random rndlength3 = new Random();
-            int length3 = rndlength3.Next(150, 150);
+            int gap3 = rndgap3.Next(240, 360);
             for (int i = 0; i <= 2; i++)
             {
-                platformSpeed[i] = speed.Next(1000, 1000); //each platform has a random speed
-                area[i] = new Rectangle(x1 + gap * i, y, length1, 20);
+                platformSpeed[i] = speed.Next(800, 1200); //each platform has a random speed between 800 and 1200
+                area[i] = new Rectangle(x1 + gap * i, y, 150, 20);
             }
             for (int o = 0; o <= 2; o++)
             {
-                platform2Speed[o] = speed2.Next(1000, 1000); //each platform has a random speed
-                area2[o] = new Rectangle(x2 + gap2 * o, y2, length2, 20);
+                platform2Speed[o] = speed2.Next(800, 1200); //each platform has a random speed between 800 and 1200
+                area2[o] = new Rectangle(x2 + gap2 * o, y2, 150, 20);
             }
             for (int p = 0; p <= 2; p++)
             {
-                platform3Speed[p] = speed3.Next(1000, 1000);
-                area3[p] = new Rectangle(x3 + gap3 * p, y3, length3, 20);
+                platform3Speed[p] = speed3.Next(800, 1200); //each platform has a random speed between 800 and 1200
+                area3[p] = new Rectangle(x3 + gap3 * p, y3, 150, 20);
             }
             theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
-            therocket = new Rectangle(xp - 40, yp - 40, 140, 80);
+            therocket = new Rectangle(xp - 40, yp - 40, 70, 40);
             Random pltchng = new Random();
             InitializeComponent();
-            leg1 = length1;
-            leg2 = length2;
-            leg3 = length3;
+            leg1 = 150;
+            leg2 = 150;
+            leg3 = 150;
             gap = gp1;
             gap2 = gp2;
             gap3 = gp3;
@@ -460,7 +454,7 @@ namespace Platformer
                 platform3Speed[p] = speed2.Next(10, 20); //each platform has a random speed
             }
         }
-        void Gamestart()
+        void Gamestart() // start the game
         {
             BtnStart.Enabled = false;
             BtnStop.Enabled = false;

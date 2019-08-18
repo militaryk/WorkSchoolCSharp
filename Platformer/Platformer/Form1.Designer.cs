@@ -185,9 +185,9 @@
             this.Lbldiffmin.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.Lbldiffmin.Location = new System.Drawing.Point(496, 5);
             this.Lbldiffmin.Name = "Lbldiffmin";
-            this.Lbldiffmin.Size = new System.Drawing.Size(17, 23);
+            this.Lbldiffmin.Size = new System.Drawing.Size(20, 23);
             this.Lbldiffmin.TabIndex = 10;
-            this.Lbldiffmin.Text = "1";
+            this.Lbldiffmin.Text = "2";
             // 
             // LblXP
             // 
