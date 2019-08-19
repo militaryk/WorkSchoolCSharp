@@ -38,7 +38,6 @@
             this.LblScore = new System.Windows.Forms.Label();
             this.TmrPerson = new System.Windows.Forms.Timer(this.components);
             this.BtnStart = new System.Windows.Forms.Button();
-            this.BtnStop = new System.Windows.Forms.Button();
             this.BtnInstruction = new System.Windows.Forms.Button();
             this.TbUser = new System.Windows.Forms.TextBox();
             this.LblUser = new System.Windows.Forms.Label();
@@ -122,31 +121,20 @@
             // BtnStart
             // 
             this.BtnStart.BackColor = System.Drawing.Color.Lime;
-            this.BtnStart.Location = new System.Drawing.Point(41, 403);
+            this.BtnStart.Location = new System.Drawing.Point(12, 403);
             this.BtnStart.Name = "BtnStart";
-            this.BtnStart.Size = new System.Drawing.Size(75, 35);
+            this.BtnStart.Size = new System.Drawing.Size(228, 35);
             this.BtnStart.TabIndex = 3;
             this.BtnStart.Text = "Start";
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // BtnStop
-            // 
-            this.BtnStop.BackColor = System.Drawing.Color.Red;
-            this.BtnStop.Enabled = false;
-            this.BtnStop.Location = new System.Drawing.Point(158, 403);
-            this.BtnStop.Name = "BtnStop";
-            this.BtnStop.Size = new System.Drawing.Size(75, 35);
-            this.BtnStop.TabIndex = 4;
-            this.BtnStop.Text = "Stop";
-            this.BtnStop.UseVisualStyleBackColor = false;
-            // 
             // BtnInstruction
             // 
             this.BtnInstruction.BackColor = System.Drawing.Color.Aqua;
-            this.BtnInstruction.Location = new System.Drawing.Point(275, 403);
+            this.BtnInstruction.Location = new System.Drawing.Point(246, 403);
             this.BtnInstruction.Name = "BtnInstruction";
-            this.BtnInstruction.Size = new System.Drawing.Size(75, 35);
+            this.BtnInstruction.Size = new System.Drawing.Size(146, 35);
             this.BtnInstruction.TabIndex = 5;
             this.BtnInstruction.Text = "Instructions";
             this.BtnInstruction.UseVisualStyleBackColor = false;
@@ -225,7 +213,6 @@
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.TbUser);
             this.Controls.Add(this.BtnInstruction);
-            this.Controls.Add(this.BtnStop);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.LblScore);
             this.DoubleBuffered = true;
@@ -247,7 +234,6 @@
         private System.Windows.Forms.Timer TmrPerson;
         private System.Windows.Forms.Timer TmrPlatform;
         private System.Windows.Forms.Button BtnStart;
-        private System.Windows.Forms.Button BtnStop;
         private System.Windows.Forms.Button BtnInstruction;
         private System.Windows.Forms.TextBox TbUser;
         private System.Windows.Forms.Label LblUser;

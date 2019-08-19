@@ -74,13 +74,6 @@ namespace Platformer
             {
                 //theperson.Y -= -10;
             }
-            if (ingame == true) // is the person ingame
-            {
-                if (theperson.Y > 550) // if the person is higher than 500, if so game over.
-                {
-                    Gameover(); // game over method
-                }
-            }
             if (jump == true) // jump if jump is true
             {
                 gravity = false;
@@ -102,7 +95,9 @@ namespace Platformer
             TmrPerson.Enabled = false;
             ingame = false;
             TmrPlatform.Enabled = false;
-            theperson.Y = 800;
+            theperson.Y = yp - 40;
+            theperson.X = xp - 40;
+            Invalidate();
             if (score >= highscore) // set highscore
             {
                 highscore = score;
@@ -132,6 +127,9 @@ namespace Platformer
             ingame = true;
             Gamestart();
             user = TbUser.Text;
+            score = 0;
+            theperson.Y = yp - 40;
+            theperson.X = xp - 40;
         }
 
 
@@ -385,6 +383,13 @@ namespace Platformer
             {
                 Gameover();
             }
+            if (ingame == true) // is the person ingame
+            {
+                if (theperson.Y > 550) // is the person lower than 500, if so game over.
+                {
+                    Gameover(); // game over method
+                }
+            }
         }
         public Form1()
         {
@@ -457,7 +462,6 @@ namespace Platformer
         void Gamestart() // start the game
         {
             BtnStart.Enabled = false;
-            BtnStop.Enabled = false;
             BtnInstruction.Enabled = false;
             TbUser.Enabled = false;
             TmrPerson.Enabled = true;
