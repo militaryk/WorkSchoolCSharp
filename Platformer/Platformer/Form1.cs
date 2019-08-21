@@ -98,27 +98,9 @@ namespace Platformer
             theperson.Y = yp - 40;
             theperson.X = xp - 40;
             Invalidate();
-            if (score >= highscore) // set highscore
-            {
-                highscore = score;
-            }
             MessageBox.Show("Game Over " + user + " you scored a whooping score of " + score);
-            // reset game (Still in progress)
-            theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
-            for (int i = 0; i <= 2; i++)
-            {
-                area[i] = new Rectangle(x1 + gp1 * i, y, leg1, 20);
-            }
-            for (int o = 0; o <= 2; o++)
-            {
-                area2[o] = new Rectangle(x2 + gp2 * o, y2, leg2, 20);
-            }
-            for (int p = 0; p <= 2; p++)
-            {
-                area3[p] = new Rectangle(x3 + gp3 * p, y3, leg3, 20);
-            }
-            InitializeComponent();
-            BtnStart.Enabled = true;
+            MessageBox.Show("Thanks For Playing");
+            this.Close();
         }
 
 
@@ -149,6 +131,7 @@ namespace Platformer
             if (e.KeyData == Keys.Left) { left = true; }
             if (e.KeyData == Keys.Right) { right = true; }
             if (e.KeyData == Keys.Space) { if (jumpdelay == false) { jump = true; } }
+            if (e.KeyData == Keys.Down) { DelayJump(); }
 
         }
 
@@ -415,7 +398,7 @@ namespace Platformer
                 area3[p] = new Rectangle(x3 + gap3 * p, y3, 150, 20);
             }
             theperson = new Rectangle(xp - 40, yp - 40, 20, 20);
-            therocket = new Rectangle(xp - 40, yp - 40, 70, 40);
+            therocket = new Rectangle(xp , yp - 200, 70, 40);
             Random pltchng = new Random();
             InitializeComponent();
             leg1 = 150;
