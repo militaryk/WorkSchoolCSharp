@@ -88,9 +88,9 @@
             this.TbDiff.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.TbDiff.Location = new System.Drawing.Point(478, 427);
             this.TbDiff.Name = "TbDiff";
+            this.TbDiff.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TbDiff.Size = new System.Drawing.Size(100, 20);
             this.TbDiff.TabIndex = 2;
-            this.TbDiff.Text = " ";
             this.TbDiff.TextChanged += new System.EventHandler(this.TbDiff_TextChanged);
             this.TbDiff.Leave += new System.EventHandler(this.TbDiff_Leave);
             // 
