@@ -33,12 +33,10 @@ namespace Platformer
         int xp = 200, yp = 200;// starting location for person
         int score = 0;// score int
         int diffcontrol = 50; // default difficulty int
-        int difftime = 1; // difficulty default time
         int[] platformSpeed = new int[3]; //Speed of platform 1's  
         int[] platform2Speed = new int[3];//Speed of platform 2's
         int[] platform3Speed = new int[3]; //Speed of platforms 3's
         bool left, right, gravity = true, jump, jumpdelay = false; // controls for left, right, gravity affecting player, jump, should jump be delayed
-        int highscore; // highscore, doesnt save over games
         string user; // username
         bool movingdown; // Is the player moving down?
         int leg1, leg2, leg3; // length of platforms
@@ -117,13 +115,13 @@ namespace Platformer
 
         private void Form1_Load(object sender, EventArgs e) // instructions to play beofre game apears
         {
-            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
-            MessageBox.Show("Please Enter Username Before You Begin \n \n \n \n \n \n \n \n OR ELSE!");
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned \n (It is highly not recomended to play with a difficulty higher than 6, Unless you are a super computer)");
+            MessageBox.Show("Please Enter Username Before You Begin.");
         }
 
         private void BtnInstruction_Click(object sender, EventArgs e) // Instructions if player wishes to read them again
         {
-            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned");
+            MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned \n (It is highly not recomended to play with a difficulty higher than 6, Unless you are a super computer)");
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e) // if a key is pressed, controls movement
@@ -138,28 +136,45 @@ namespace Platformer
         private void BtnConfrimDiff_Click(object sender, EventArgs e) // Changes difficulty if player clicks confirm difficulty, otherwise its default at 2
         {
             int diff = Int32.Parse(TbDiff.Text);
-            Lbldiffmin.Text = diff.ToString();
-            TmrPlatform.Interval = 100 / diff;
-            TmrGravity.Interval = 100 / diff;
-            diffcontrol = 100 / diff;
+            if (diff > 6)
+            {
+                MessageBox.Show("This is only meant for super computers, are you sure you are a super computer? If not change your difficulty to something lower");
+                Lbldiffmin.Text = diff.ToString();
+                TmrPlatform.Interval = 100 / diff;
+                TmrGravity.Interval = 100 / diff;
+                diffcontrol = 100 / diff;
+            }
+            else {
+                Lbldiffmin.Text = diff.ToString();
+                TmrPlatform.Interval = 100 / diff;
+                TmrGravity.Interval = 100 / diff;
+                diffcontrol = 100 / diff;
+            }
+            
         }
 
         private void TbDiff_Leave(object sender, EventArgs e) // If the player trys to leave text box blank, if not blank change diff int
         {
-            if (TbDiff.Text == "")
-            {
-                MessageBox.Show("Please Enter Something");
+            if (TbDiff.Text == "0") {
+                TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - TbDiff.Text.Length);
+                MessageBox.Show("Please Enter Something More Than 0 and less than 10");
+
             }
-            else
-            {
-                int TbCheck = Int32.Parse(TbDiff.Text);
-                if (TbCheck > 9)
+            else {
+                if (TbDiff.Text == "")
                 {
-                    TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - TbDiff.Text.Length);
-                    int diff = Int32.Parse(TbDiff.Text);
+                     MessageBox.Show("Please Enter Something between 1 and 9");
+                }
+                else
+                {
+                     if (TbDiff.Text.Length == 2)
+                     {
+                         TbDiff.Text = TbDiff.Text.Remove(TbDiff.Text.Length - TbDiff.Text.Length);
+                        MessageBox.Show("Please Enter Something between 1 and 9");
+                    }
                 }
             }
-        }
+    }
 
         private void TbDiff_TextChanged(object sender, EventArgs e) // if the person trys to enter something that isnt a number or leave it blank
         {

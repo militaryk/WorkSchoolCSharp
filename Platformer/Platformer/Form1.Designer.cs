@@ -69,9 +69,9 @@
             this.LblDiffDet.Font = new System.Drawing.Font("Comic Sans MS", 10F);
             this.LblDiffDet.Location = new System.Drawing.Point(400, 405);
             this.LblDiffDet.Name = "LblDiffDet";
-            this.LblDiffDet.Size = new System.Drawing.Size(276, 19);
+            this.LblDiffDet.Size = new System.Drawing.Size(270, 19);
             this.LblDiffDet.TabIndex = 3;
-            this.LblDiffDet.Text = "Please Enter Difficulty Between 1 and 10";
+            this.LblDiffDet.Text = "Please Enter Difficulty Between 1 and 9";
             // 
             // LblDiff
             // 
@@ -201,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 453);
+            this.ClientSize = new System.Drawing.Size(804, 454);
             this.Controls.Add(this.LblDiff);
             this.Controls.Add(this.LblDiffDet);
             this.Controls.Add(this.PnlGame);
