@@ -46,6 +46,7 @@
             this.Lbldiffmin = new System.Windows.Forms.Label();
             this.LblXP = new System.Windows.Forms.Label();
             this.LblDifficulty = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // TmrPlatform
@@ -67,7 +68,7 @@
             // 
             this.LblDiffDet.AutoSize = true;
             this.LblDiffDet.Font = new System.Drawing.Font("Comic Sans MS", 10F);
-            this.LblDiffDet.Location = new System.Drawing.Point(400, 405);
+            this.LblDiffDet.Location = new System.Drawing.Point(398, 405);
             this.LblDiffDet.Name = "LblDiffDet";
             this.LblDiffDet.Size = new System.Drawing.Size(270, 19);
             this.LblDiffDet.TabIndex = 3;
@@ -89,16 +90,16 @@
             this.TbDiff.Location = new System.Drawing.Point(478, 427);
             this.TbDiff.Name = "TbDiff";
             this.TbDiff.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TbDiff.Size = new System.Drawing.Size(100, 20);
+            this.TbDiff.Size = new System.Drawing.Size(87, 20);
             this.TbDiff.TabIndex = 2;
             this.TbDiff.TextChanged += new System.EventHandler(this.TbDiff_TextChanged);
             this.TbDiff.Leave += new System.EventHandler(this.TbDiff_Leave);
             // 
             // BtnConfrimDiff
             // 
-            this.BtnConfrimDiff.Location = new System.Drawing.Point(583, 426);
+            this.BtnConfrimDiff.Location = new System.Drawing.Point(571, 427);
             this.BtnConfrimDiff.Name = "BtnConfrimDiff";
-            this.BtnConfrimDiff.Size = new System.Drawing.Size(99, 20);
+            this.BtnConfrimDiff.Size = new System.Drawing.Size(86, 19);
             this.BtnConfrimDiff.TabIndex = 0;
             this.BtnConfrimDiff.Text = "Confirm Difficulty";
             this.BtnConfrimDiff.UseVisualStyleBackColor = true;
@@ -121,6 +122,7 @@
             // BtnStart
             // 
             this.BtnStart.BackColor = System.Drawing.Color.Lime;
+            this.BtnStart.Enabled = false;
             this.BtnStart.Location = new System.Drawing.Point(12, 403);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.Size = new System.Drawing.Size(228, 35);
@@ -142,16 +144,17 @@
             // 
             // TbUser
             // 
-            this.TbUser.Location = new System.Drawing.Point(692, 425);
+            this.TbUser.Location = new System.Drawing.Point(663, 426);
             this.TbUser.Name = "TbUser";
-            this.TbUser.Size = new System.Drawing.Size(100, 20);
+            this.TbUser.Size = new System.Drawing.Size(129, 20);
             this.TbUser.TabIndex = 6;
+            this.TbUser.TextChanged += new System.EventHandler(this.TbUser_TextChanged);
             // 
             // LblUser
             // 
             this.LblUser.AutoSize = true;
             this.LblUser.Font = new System.Drawing.Font("Comic Sans MS", 15F);
-            this.LblUser.Location = new System.Drawing.Point(688, 396);
+            this.LblUser.Location = new System.Drawing.Point(674, 397);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(104, 28);
             this.LblUser.TabIndex = 7;
@@ -246,6 +249,7 @@
         private System.Windows.Forms.Label Lbldiffmin;
         private System.Windows.Forms.Label LblXP;
         private System.Windows.Forms.Label LblDifficulty;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

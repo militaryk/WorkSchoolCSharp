@@ -116,12 +116,42 @@ namespace Platformer
         private void Form1_Load(object sender, EventArgs e) // instructions to play beofre game apears
         {
             MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned \n (It is highly not recomended to play with a difficulty higher than 6, Unless you are a super computer)");
-            MessageBox.Show("Please Enter Username Before You Begin.");
+            MessageBox.Show("Please enter Username before you begin or game or you will not be able to start game \n Username will only accept letters");
         }
 
         private void BtnInstruction_Click(object sender, EventArgs e) // Instructions if player wishes to read them again
         {
             MessageBox.Show("Instructions. \n The aim is dont die, dont fall into the void. \n 1. Press Space To Jump \n 2.Arrow Keys to control left and right \n \n Difficulty: \n Difficulty can be selected by entering a number between 1 and 9, \n 2 is default and 9 is extreme. \n Note higher the score the higher the XP is earned \n (It is highly not recomended to play with a difficulty higher than 6, Unless you are a super computer)");
+            MessageBox.Show("Please enter Username before you begin or game or you will not be able to start game \n Username will only accept letters");
+        }
+
+        private void TbUser_TextChanged(object sender, EventArgs e)
+        {
+            string context = TbUser.Text;
+            bool isletter = true;
+            //for loop checks for letters as characters are entered
+            for (int i = 0; i < context.Length; i++)
+            {
+                if (!char.IsLetter(context[i]))// if current character not a letter
+                {
+                    isletter = false;//make isletter false
+                    break; // exit the for loop
+                }
+
+            }
+
+            // if not a letter clear the textbox and focus on it
+            // to enter name again
+            if (isletter == false)
+            {
+                TbUser.Clear();
+                TbUser.Focus();
+            }
+            else
+            {
+                BtnStart.Enabled = true;
+            }
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e) // if a key is pressed, controls movement
